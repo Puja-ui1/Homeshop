@@ -219,11 +219,20 @@ const Header = () => {
                     <Link to={{ pathname: 'chatbot', action: 'redirectToChat' }} className="position-relative" onClick={chatNotificationHandler}>
                         <>
                             <img src={images[!window.location.pathname.split('/')?.includes('chatbot') ? 'chat.png' : 'chat-blue.png']} alt="logo" className="chatImg" />
-                            {JSON.parse(localStorage.getItem("newUnreadCount")) !== null ?
-							 						JSON.parse(localStorage.getItem("newUnreadCount")) > 0 &&
+                            
+                            {JSON.parse(localStorage.getItem("ongoingUnreadCount")) !== null && JSON.parse(localStorage.getItem("newUnreadCount")) !== null ?
+											JSON.parse(localStorage.getItem("ongoingUnreadCount")) + JSON.parse(localStorage.getItem("newUnreadCount")) > 0 &&
+											<span className="upper-noti-count">{JSON.parse(localStorage.getItem("ongoingUnreadCount")) + JSON.parse(localStorage.getItem("newUnreadCount"))}</span>
+											:
+											JSON.parse(localStorage.getItem("ongoingUnreadCount")) !== null ?
+												JSON.parse(localStorage.getItem("ongoingUnreadCount")) > 0 &&
+												<span className="upper-noti-count">{JSON.parse(localStorage.getItem("ongoingUnreadCount"))}</span>
+												:
+												JSON.parse(localStorage.getItem("newUnreadCount")) !== null ?
+													JSON.parse(localStorage.getItem("newUnreadCount")) > 0 &&
 													<span className="upper-noti-count">{JSON.parse(localStorage.getItem("newUnreadCount"))}</span>
 													: null}
-                                                    <span className="notify-badge-chat" />
+                                                    
                         </>
                     </Link>
 

@@ -14,6 +14,7 @@ const Chatbot = () => {
 
   let UserData = JSON.parse(localStorage.getItem("AgentData"));
   let ongoingChatsData = JSON.parse(localStorage.getItem("ongoingChatsData"))
+  const [newChatsData , setnewChatsData ] = useState([])
 
   const [state, setState] = useState({
     isHistoricalChat: false,
@@ -61,15 +62,8 @@ const Chatbot = () => {
 
 
   useEffect(() => {
-    console.log(localStorage.getItem("newChatsData"), "getit");
-    let newChatsData1 = localStorage.getItem("newChatsData") !== "" ?
-      JSON.parse(localStorage.getItem("newChatsData")) : []
-
-      setState({
-        ...state,
-        newChatsData: newChatsData1
-      })
-     
+   
+    updateChatCount()
 
       // if (ongoingChatsData.length > 0) {
       //   for (let i = 0; i < ongoingChatsData.length; i++) {
@@ -80,6 +74,17 @@ const Chatbot = () => {
   
 
   }, [])
+  const updateChatCount = () =>{
+    console.log(localStorage.getItem("newChatsData"), "getit");
+    let newChatsData1 = localStorage.getItem("newChatsData") !== "" ?
+      JSON.parse(localStorage.getItem("newChatsData")) : []
+      
+
+
+      setnewChatsData(newChatsData1)
+     
+
+  }
 
   const handleHistTabClick = () => {
     localStorage.setItem("isOngoingClick", false);
