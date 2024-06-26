@@ -6,6 +6,7 @@ import CancelImg from "./../assets/Images/cancel.png";
 import { Markup } from "interweave";
 import io from 'socket.io-client';
 import { socket } from '../helpers/SocketConnection';
+import { handleSocket } from '../Services/SocketService';
 
 
 const Chatbot = () => {
@@ -14,8 +15,7 @@ const Chatbot = () => {
 
   let UserData = JSON.parse(localStorage.getItem("AgentData"));
   let ongoingChatsData = JSON.parse(localStorage.getItem("ongoingChatsData"))
-  const [newChatsData , setnewChatsData ] = useState([])
-
+  const [newChatsData, setnewChatsData] = useState(localStorage.getItem("newChatsData") !== "" ? JSON.parse(localStorage.getItem("newChatsData")) : [])
   const [state, setState] = useState({
     isHistoricalChat: false,
     messageData: [],
@@ -40,8 +40,7 @@ const Chatbot = () => {
     messageListLoader: false,
     // isMainLoader: false,
     recentChatCount: 0,
-    newChatsData: [],
-
+    newChatsData:JSON.parse(localStorage.getItem("newChatsData")),
     pastChatCount: 0,
     messageData: [],
     messageListLoader: false,
@@ -59,29 +58,33 @@ const Chatbot = () => {
 
   const [isHistoricalChatLoading, setisHistoricalChatLoading] = useState(false)
   const [historicalChatData, sethistoricalChatData] = useState([])
-
-
-  useEffect(() => {
-   
-    updateChatCount()
-
-      // if (ongoingChatsData.length > 0) {
-      //   for (let i = 0; i < ongoingChatsData.length; i++) {
-      //     ongoingChatsData[i].initialColor =
-      //      state.colorCode[Math.floor(Math.random() * 6)];
-      //   }
-      // }
   
 
+ console.log("countttttttt",state)
+  useEffect(() => {
+    
+  //  handleSocket(state,setState)
+    updateChatsCounts()
+
+    // socket.on("CallNewChatSP", function (result) {
+    //   debugger
+    //   console.log(result)
+    // })
+    // console.log(" newChatsData:" , state.newChatsData)
+
   }, [])
-  const updateChatCount = () =>{
+
+  const updateChatsCounts = () => {
     console.log(localStorage.getItem("newChatsData"), "getit");
     let newChatsData1 = localStorage.getItem("newChatsData") !== "" ?
       JSON.parse(localStorage.getItem("newChatsData")) : []
-      
-
 
       setnewChatsData(newChatsData1)
+      // setState({
+      //   ...state,
+      //   newChatsData:JSON.parse(localStorage.getItem("newChatsData")) !== "" ? JSON.parse(localStorage.getItem("newChatsData")) : []
+
+      // })
      
 
   }
@@ -211,13 +214,15 @@ const Chatbot = () => {
   
   console.log("state.isHistoricalChat ", state.isHistoricalChat)
   console.log("state.showHistoricalChat", state.showHistoricalChat)
+  console.log("hsjdhshdisodojs")
+  console.log("stateeeeee",state.newChatsData)
   return (
     <>
       <div className='container-fluid'>
         <div className='row'>
           <div className='col-lg-3 p-0'>
             <div className='chatbot-left'>
-              <div className='chat-cntr'>
+              <div className='chat-cntr' >
                 <p className='ongng'>
                   Ongoing Chats({state.ongoingChatsData?.length < 9
                     ? "0" + state.ongoingChatsData?.length
@@ -294,9 +299,9 @@ const Chatbot = () => {
 
               <div className="chat-cntr">
                 <p className="ongng">
-                  New Chats ({state.newChatsData?.length < 9
-                    ? "0" + state.newChatsData?.length
-                    : state.newChatsData?.length}
+                  New Chats ({newChatsData?.length < 9
+                    ? "0" + newChatsData?.length
+                    : newChatsData?.length}
                   )
                 </p>
                 {/* <div className="chat-left-height">
@@ -322,7 +327,7 @@ const Chatbot = () => {
                 </div> */}
 
                 <div className="chat-left-height">
-                  {state.newChatsData && state.newChatsData.map((chat, i) => (
+                  {newChatsData && newChatsData.map((chat, i) => (
                     <div key={i} className={state.chatId === chat.chatID ? "chat-info active" : "chat-info"}  
                     onClick={handleUpdateCustomerChatStatus(
                       chat.chatID,
@@ -336,7 +341,7 @@ const Chatbot = () => {
                       chat.messageCount)}>
                       <div className="d-flex align-items-center overflow-hidden">
                         <span className="initial" style={{ backgroundColor: chat.initialColor }}>
-                          {chat.customerName.charAt(0)}
+                          {chat.customerName.charAt(0)} 
                         </span>
                         <div className="name-num ml-2">
                           <p>
@@ -362,6 +367,7 @@ const Chatbot = () => {
                                   "No New Message"
                                 ) : (
                                   <span className="messagecount">
+                                    {/* {JSON.parse(localStorage.getItem())} */}
                                     {chat.messageCount}
                                   </span>
                                 )}

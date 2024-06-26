@@ -352,285 +352,285 @@ const Headerfunctional = (props) => {
 
   // socket connection  handler
 
- const handleSocket = () => {
+//  const handleSocket = () => {
 	
-		let agentId = 0;
-		let tenantID = 0;
-		let programCode = "";
-		let UserData = JSON.parse(localStorage.getItem("AgentData"));
-		agentId = UserData?.agentID;
-		tenantID = UserData?.tenantID;
-		programCode = UserData?.programCode;
-		var currChat = {
-			userMaster_ID: agentId,
-			tenant_ID: tenantID,
-			ProgramCode: programCode,
-			chatId: 0
-		};
-		var objNewChat = {
-			userMaster_ID: agentId,
-			tenant_ID: tenantID,
-			ProgramCode: programCode,
-		};
+// 		let agentId = 0;
+// 		let tenantID = 0;
+// 		let programCode = "";
+// 		let UserData = JSON.parse(localStorage.getItem("AgentData"));
+// 		agentId = UserData?.agentID;
+// 		tenantID = UserData?.tenantID;
+// 		programCode = UserData?.programCode;
+// 		var currChat = {
+// 			userMaster_ID: agentId,
+// 			tenant_ID: tenantID,
+// 			ProgramCode: programCode,
+// 			chatId: 0
+// 		};
+// 		var objNewChat = {
+// 			userMaster_ID: agentId,
+// 			tenant_ID: tenantID,
+// 			ProgramCode: programCode,
+// 		};
 
-		var objOngoing = {
-			tenant_ID: tenantID,
-			search: "",
-			StoreMgr_ID: agentId,
-			ProgramCode: programCode,
-			ChatId: 0,
-		};
-		socket.emit("CallOngoingSP", objOngoing);
-		// socket.emit("CallNewChatSP", objNewChat);
-		handleNewChat(objNewChat)
+// 		var objOngoing = {
+// 			tenant_ID: tenantID,
+// 			search: "",
+// 			StoreMgr_ID: agentId,
+// 			ProgramCode: programCode,
+// 			ChatId: 0,
+// 		};
+// 		socket.emit("CallOngoingSP", objOngoing);
+// 		// socket.emit("CallNewChatSP", objNewChat);
+// 		handleNewChat(objNewChat)
 
-		setTimeout(() => {
-			socket.emit("CallSetCurrentChatSP", currChat);
-		}, 2000);
-		const newChatsDataString = localStorage.getItem("newChatsData");
-		if (newChatsDataString && JSON.parse(newChatsDataString)?.length === 0) {
-			localStorage.setItem("newUnreadCount", 0)
-			newchatcount = 0
-		}
-		if (JSON.parse(localStorage.getItem("ongoingChatsData"))?.length === 0) {
-			localStorage.setItem("ongoingUnreadCount", 0)
-			ongochatcount = 0
-		}
-		if (programCode !== "") {
-      // hiddenButtonRef.current?.click();
-      //here data is coming from backend as response
-      console.log("inside if", programCode.toLowerCase() + agentId,)
-			socket.on(programCode.toLowerCase() + agentId, 
-      function (data) {
+// 		// setTimeout(() => {
+// 		// 	socket.emit("CallSetCurrentChatSP", currChat);
+// 		// }, 2000);
+// 		const newChatsDataString = localStorage.getItem("newChatsData");
+// 		if (newChatsDataString && JSON.parse(newChatsDataString)?.length === 0) {
+// 			localStorage.setItem("newUnreadCount", 0)
+// 			newchatcount = 0
+// 		}
+// 		if (JSON.parse(localStorage.getItem("ongoingChatsData"))?.length === 0) {
+// 			localStorage.setItem("ongoingUnreadCount", 0)
+// 			ongochatcount = 0
+// 		}
+// 		if (programCode !== "") {
+//       // hiddenButtonRef.current?.click();
+//       //here data is coming from backend as response
+//       console.log("inside if", programCode.toLowerCase() + agentId,)
+// 			socket.on(programCode.toLowerCase() + agentId, 
+//       function (data) {
 				
-				//localStorage.setItem("abcd",JSON.stringify(data[0]))
-				console.log(data, "data");
-				var chatData;
-				// debugger
-				// NotificationManager.info(data[0])
-				if (programCode !== "" && data[4] !== "" && data[4]) {
-					if (
-						programCode.toLowerCase() === data[4].toLowerCase()
-					) {
-						debugger
-						var isMobileNoExist = []
-						// let chatData = JSON.parse(localStorage.getItem("ongoingChatsData"));
-						let ongChat = JSON.parse(localStorage.getItem("ongoingChatsData"))
-						if (ongChat) {
-							isMobileNoExist = ongChat.filter(
-								(x) =>
-									x?.mobileNo === data[3].toString() &&
-									x?.isCustEndChat === false &&
-									x?.sourceAbbr === data[6]
-							)
-							setState({
-                ...state,
-								dataNewMessage: data[0]
+// 				//localStorage.setItem("abcd",JSON.stringify(data[0]))
+// 				console.log(data, "data");
+// 				var chatData;
+// 				// debugger
+// 				// NotificationManager.info(data[0])
+// 				if (programCode !== "" && data[4] !== "" && data[4]) {
+// 					if (
+// 						programCode.toLowerCase() === data[4].toLowerCase()
+// 					) {
+// 						debugger
+// 						var isMobileNoExist = []
+// 						// let chatData = JSON.parse(localStorage.getItem("ongoingChatsData"));
+// 						let ongChat = JSON.parse(localStorage.getItem("ongoingChatsData"))
+// 						if (ongChat) {
+// 							isMobileNoExist = ongChat.filter(
+// 								(x) =>
+// 									x?.mobileNo === data[3].toString() &&
+// 									x?.isCustEndChat === false &&
+// 									x?.sourceAbbr === data[6]
+// 							)
+// 							setState({
+//                 ...state,
+// 								dataNewMessage: data[0]
 			
-							})
-						}
-						if (isMobileNoExist.length > 0 || ongChat === null) {
-							// chatData = JSON.parse(localStorage.getItem("ongoingChatsData"));
-							var chatId = 0;
-							let newChatMeaasgeAudio = document.getElementById(
-								"newChatMeaasgeAudio"
-							);
-							let newChatMeaasgeAudioSrc = "";
+// 							})
+// 						}
+// 						if (isMobileNoExist.length > 0 || ongChat === null) {
+// 							// chatData = JSON.parse(localStorage.getItem("ongoingChatsData"));
+// 							var chatId = 0;
+// 							let newChatMeaasgeAudio = document.getElementById(
+// 								"newChatMeaasgeAudio"
+// 							);
+// 							let newChatMeaasgeAudioSrc = "";
 
-							newChatMeaasgeAudioSrc = JSON.parse(
-								window.localStorage.getItem("newMessageSoundFile")
-							);
+// 							newChatMeaasgeAudioSrc = JSON.parse(
+// 								window.localStorage.getItem("newMessageSoundFile")
+// 							);
 
-							if (newChatMeaasgeAudio) {
-								newChatMeaasgeAudio.src = newChatMeaasgeAudioSrc;
-								newChatMeaasgeAudio.volume =
-									Math.round(state.newMessageSoundVolume / 10) / 10;
-								newChatMeaasgeAudio.play();
-							}
-							chatData = ongChat.filter(
-								(x) =>
-									x.mobileNo === data[3].toString() &&
-									x.sourceAbbr === data[6]
-							);
+// 							if (newChatMeaasgeAudio) {
+// 								newChatMeaasgeAudio.src = newChatMeaasgeAudioSrc;
+// 								newChatMeaasgeAudio.volume =
+// 									Math.round(state.newMessageSoundVolume / 10) / 10;
+// 								newChatMeaasgeAudio.play();
+// 							}
+// 							chatData = ongChat.filter(
+// 								(x) =>
+// 									x.mobileNo === data[3].toString() &&
+// 									x.sourceAbbr === data[6]
+// 							);
 
-							notification.open({
-								key: chatData[0]?.chatID,
-								duration: state.notificationTime,
-								placement: "bottomRight",
-								className: "hide-message-title",
-								description: (
-									<ChatNotificationComponent
-										msgData={data[0]}
-										chatData={chatData}
-									/>
-								),
-							});
-						}
-						else {
-							let newChatAudio = document.getElementById("newChatAudio");
-							let newChatAudioSrc = "";
-							newChatAudioSrc = JSON.parse(
-								window.localStorage.getItem("newChatSoundFile")
-							);
-							if (newChatAudio) {
-								newChatAudio.src = newChatAudioSrc;
-								newChatAudio.volume =
-									Math.round(state.newChatSoundVolume / 10) / 10;
-								newChatAudio.play();
-							}
-							// socket.emit("CallNewChatSP", objNewChat);
-							handleNewChat(objNewChat)
-							let newChat = JSON.parse(localStorage.getItem("newChatsData"))
-							if (newChat) {
-								chatData = newChat.filter(
-									(x) => x.mobileNo === data[3].toString()
-								);
-								notification.open({
-									key: chatData[0]?.chatID,
-									duration: state.notificationTime,
-									placement: "bottomRight",
-									className: "hide-message-title",
-									description: (
-										<ChatNotificationComponent
-											msgData={data[0]}
-											chatData={chatData}
-										/>
-									),
-								});
-							}
+// 							notification.open({
+// 								key: chatData[0]?.chatID,
+// 								duration: state.notificationTime,
+// 								placement: "bottomRight",
+// 								className: "hide-message-title",
+// 								description: (
+// 									<ChatNotificationComponent
+// 										msgData={data[0]}
+// 										chatData={chatData}
+// 									/>
+// 								),
+// 							});
+// 						}
+// 						else {
+// 							let newChatAudio = document.getElementById("newChatAudio");
+// 							let newChatAudioSrc = "";
+// 							newChatAudioSrc = JSON.parse(
+// 								window.localStorage.getItem("newChatSoundFile")
+// 							);
+// 							if (newChatAudio) {
+// 								newChatAudio.src = newChatAudioSrc;
+// 								newChatAudio.volume =
+// 									Math.round(state.newChatSoundVolume / 10) / 10;
+// 								newChatAudio.play();
+// 							}
+// 							// socket.emit("CallNewChatSP", objNewChat);
+// 							handleNewChat(objNewChat)
+// 							let newChat = JSON.parse(localStorage.getItem("newChatsData"))
+// 							if (newChat) {
+// 								chatData = newChat.filter(
+// 									(x) => x.mobileNo === data[3].toString()
+// 								);
+// 								notification.open({
+// 									key: chatData[0]?.chatID,
+// 									duration: state.notificationTime,
+// 									placement: "bottomRight",
+// 									className: "hide-message-title",
+// 									description: (
+// 										<ChatNotificationComponent
+// 											msgData={data[0]}
+// 											chatData={chatData}
+// 										/>
+// 									),
+// 								});
+// 							}
 
-						}
+// 						}
 
-					}
-				}
-			});
-		}
+// 					}
+// 				}
+// 			});
+// 		}
 
-		socket.on(
-			"CallOngoingSP" +
-			programCode.toLowerCase() +
-			agentId,
-			function (res) {
-				var ongoingChatsData = [];
-				let ongoingUnreadCount = 0
-				// debugger
-				// console.log("Header Response ", res)
-				if (res.length > 0) {
-					for (let i = 0; i < res.length; i++) {
-						var objData = {};
-						objData.chatID = res[i].CurrentChatID;
-						objData.storeID = res[i].StoreID;
-						objData.programCode = res[i].ProgramCode;
-						objData.customerID = res[i].CustomerID;
-						objData.customerName = res[i].CustomerName;
-						objData.mobileNo = res[i].CustomerNumber;
-						objData.messageCount = res[i].NewMessageCount;
-						objData.timeAgo = res[i].TimeAgo;
-						objData.createdDate = res[i].CreatedDate;
-						objData.storeManagerId = res[i].StoreManagerId;
-						objData.storeManagerName = res[i].StoreManagerName;
-						ongoingUnreadCount += res[i].NewMessageCount
-						if (res[i].IsCustEndChat === 0) {
-							objData.isCustEndChat = false;
-						} else {
-							objData.isCustEndChat = true;
-						}
-						if (res[i].IsCustTimeout === 0) {
-							objData.isCustTimeout = false;
-						} else {
-							objData.isCustTimeout = true;
-						}
-						objData.sourceName = res[i].SourceName;
-						objData.chatSourceID = res[i].SourceID;
-						objData.sourceAbbr = res[i].SourceAbbr;
-						objData.sourceIconUrl = res[i].SourceIconUrl;
-						ongoingChatsData.push(objData);
-					}
-				}
+// 		socket.on(
+// 			"CallOngoingSP" +
+// 			programCode.toLowerCase() +
+// 			agentId,
+// 			function (res) {
+// 				var ongoingChatsData = [];
+// 				let ongoingUnreadCount = 0
+// 				// debugger
+// 				// console.log("Header Response ", res)
+// 				if (res.length > 0) {
+// 					for (let i = 0; i < res.length; i++) {
+// 						var objData = {};
+// 						objData.chatID = res[i].CurrentChatID;
+// 						objData.storeID = res[i].StoreID;
+// 						objData.programCode = res[i].ProgramCode;
+// 						objData.customerID = res[i].CustomerID;
+// 						objData.customerName = res[i].CustomerName;
+// 						objData.mobileNo = res[i].CustomerNumber;
+// 						objData.messageCount = res[i].NewMessageCount;
+// 						objData.timeAgo = res[i].TimeAgo;
+// 						objData.createdDate = res[i].CreatedDate;
+// 						objData.storeManagerId = res[i].StoreManagerId;
+// 						objData.storeManagerName = res[i].StoreManagerName;
+// 						ongoingUnreadCount += res[i].NewMessageCount
+// 						if (res[i].IsCustEndChat === 0) {
+// 							objData.isCustEndChat = false;
+// 						} else {
+// 							objData.isCustEndChat = true;
+// 						}
+// 						if (res[i].IsCustTimeout === 0) {
+// 							objData.isCustTimeout = false;
+// 						} else {
+// 							objData.isCustTimeout = true;
+// 						}
+// 						objData.sourceName = res[i].SourceName;
+// 						objData.chatSourceID = res[i].SourceID;
+// 						objData.sourceAbbr = res[i].SourceAbbr;
+// 						objData.sourceIconUrl = res[i].SourceIconUrl;
+// 						ongoingChatsData.push(objData);
+// 					}
+// 				}
 
-				localStorage.setItem(
-					"ongoingChatsData",
-					JSON.stringify(ongoingChatsData)
-				);
-				ongochatcount = ongoingUnreadCount
-				localStorage.setItem("ongoingUnreadCount", ongoingUnreadCount);
-				// setTimeout(() => {
-				// 	forceUpdate();
-				// }, 400);
-			}
-		);
+// 				localStorage.setItem(
+// 					"ongoingChatsData",
+// 					JSON.stringify(ongoingChatsData)
+// 				);
+// 				ongochatcount = ongoingUnreadCount
+// 				localStorage.setItem("ongoingUnreadCount", ongoingUnreadCount);
+// 				// setTimeout(() => {
+// 				// 	forceUpdate();
+// 				// }, 400);
+// 			}
+// 		);
 
-	}
+// 	}
 
 
 
-  const handleNewChat = (Value) => {
+  // const handleNewChat = (Value) => {
 		
-		socket.send("hi");
-		socket.emit("CallNewChatSP", Value);
-		//debugger
-		socket.on(
-			"CallNewChatSP" +Value?.ProgramCode?.toLowerCase() + Value?.userMaster_ID,
-			function (result) {
-				// debugger
-				// console.log("resultnewchat",result)
-				var newChatsIncomingData = [];
-				let newUnreadCount = 0
-				if (result.length > 0) {
-					for (let i = 0; i < result.length; i++) {
-						var objData = {};
-						objData.chatID = result[i].CurrentChatID;
-						objData.storeID = result[i].StoreID;
-						objData.programCode = result[i].ProgramCode;
-						objData.customerID = result[i].CustomerID;
-						objData.customerName = result[i].CustomerName;
-						objData.mobileNo = result[i].CustomerNumber;
-						objData.messageCount = result[i].NewMessageCount;
-						objData.timeAgo = result[i].TimeAgo;
-						objData.createdDate = result[i].CreatedDate;
-						objData.storeManagerId = result[i].StoreManagerId;
-						objData.storeManagerName = result[i].StoreManagerName;
-						newUnreadCount += result[i].NewMessageCount
-						if (result[i].IsCustEndChat === 0) {
-							objData.isCustEndChat = false;
-						} else {
-							objData.isCustEndChat = true;
-						}
-						if (result[i].IsCustTimeout === 0) {
-							objData.isCustTimeout = false;
-						} else {
-							objData.isCustTimeout = true;
-						}
-						objData.sourceName = result[i].SourceName;
-						objData.chatSourceID = result[i].SourceID;
-						objData.sourceAbbr = result[i].SourceAbbr;
-						objData.sourceIconUrl = result[i].SourceIconUrl;
-						newChatsIncomingData.push(objData);
-					}
+	// 	socket.send("hi");
+	// 	socket.emit("CallNewChatSP", Value);
+	// 	//debugger
+	// 	socket.on(
+	// 		"CallNewChatSP" +Value?.ProgramCode?.toLowerCase() + Value?.userMaster_ID,
+	// 		function (result) {
+	// 			// debugger
+	// 			// console.log("resultnewchat",result)
+	// 			var newChatsIncomingData = [];
+	// 			let newUnreadCount = 0
+	// 			if (result.length > 0) {
+	// 				for (let i = 0; i < result.length; i++) {
+	// 					var objData = {};
+	// 					objData.chatID = result[i].CurrentChatID;
+	// 					objData.storeID = result[i].StoreID;
+	// 					objData.programCode = result[i].ProgramCode;
+	// 					objData.customerID = result[i].CustomerID;
+	// 					objData.customerName = result[i].CustomerName;
+	// 					objData.mobileNo = result[i].CustomerNumber;
+	// 					objData.messageCount = result[i].NewMessageCount;
+	// 					objData.timeAgo = result[i].TimeAgo;
+	// 					objData.createdDate = result[i].CreatedDate;
+	// 					objData.storeManagerId = result[i].StoreManagerId;
+	// 					objData.storeManagerName = result[i].StoreManagerName;
+	// 					newUnreadCount += result[i].NewMessageCount
+	// 					if (result[i].IsCustEndChat === 0) {
+	// 						objData.isCustEndChat = false;
+	// 					} else {
+	// 						objData.isCustEndChat = true;
+	// 					}
+	// 					if (result[i].IsCustTimeout === 0) {
+	// 						objData.isCustTimeout = false;
+	// 					} else {
+	// 						objData.isCustTimeout = true;
+	// 					}
+	// 					objData.sourceName = result[i].SourceName;
+	// 					objData.chatSourceID = result[i].SourceID;
+	// 					objData.sourceAbbr = result[i].SourceAbbr;
+	// 					objData.sourceIconUrl = result[i].SourceIconUrl;
+	// 					newChatsIncomingData.push(objData);
+	// 				}
 
-					// if (
-					// 	JSON.stringify(newChatsIncomingData) !==
-					// 	localStorage.getItem("newChatsData")
-					// ) {
-					localStorage.setItem(
-						"newChatsData",
-						JSON.stringify(newChatsIncomingData)
-					);
-					// }
-					newchatcount = newUnreadCount
-					localStorage.setItem("newUnreadCount", newUnreadCount);
+	// 				// if (
+	// 				// 	JSON.stringify(newChatsIncomingData) !==
+	// 				// 	localStorage.getItem("newChatsData")
+	// 				// ) {
+	// 				localStorage.setItem(
+	// 					"newChatsData",
+	// 					JSON.stringify(newChatsIncomingData)
+	// 				);
+	// 				// }
+	// 				newchatcount = newUnreadCount
+	// 				localStorage.setItem("newUnreadCount", newUnreadCount);
 
-					// setTimeout(() => {
-					// 	self.forceUpdate();
-					// }, 400);
-				}
-				else {
-					localStorage.setItem("newChatsData", []); // didn't get resposnse from backend in that case we will set it emoty array in local storage
-				}
+	// 				// setTimeout(() => {
+	// 				// 	self.forceUpdate();
+	// 				// }, 400);
+	// 			}
+	// 			else {
+	// 				localStorage.setItem("newChatsData", []); // didn't get resposnse from backend in that case we will set it emoty array in local storage
+	// 			}
 
-				// chatData = JSON.parse(localStorage.getItem("ongoingChatsData"));
-			});
-	}
+	// 			// chatData = JSON.parse(localStorage.getItem("ongoingChatsData"));
+	// 		});
+	// }
 
 
 

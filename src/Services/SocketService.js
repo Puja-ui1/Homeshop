@@ -39,7 +39,7 @@ export const handleSocket = (state ,setState) => {
         ChatId: 0,
     };
     socket.emit("CallOngoingSP", objOngoing);
-    socket.emit("CallNewChatSP", objNewChat);
+    //socket.emit("CallNewChatSP", objNewChat);
     socket.emit("CallCurrChatSP", currChat);
     handleNewChat(objNewChat)
 
@@ -47,7 +47,7 @@ export const handleSocket = (state ,setState) => {
     //     socket.emit("CallSetCurrentChatSP", currChat);
     // }, 2000);
 
-    socket.emit("CallSetCurrentChatSP", currChat);
+     socket.emit("CallSetCurrentChatSP", currChat);
 
     const newChatsDataString = localStorage.getItem("newChatsData");
     if (newChatsDataString && JSON.parse(newChatsDataString)?.length === 0) {
@@ -142,8 +142,9 @@ export const handleSocket = (state ,setState) => {
 
 const handleNewChat = (Value) => {
 
-    socket.send("hi");
+    //socket.send("hi");
     socket.emit("CallNewChatSP", Value);
+    console.log("qwerr")
     //debugger
     socket.on(
         "CallNewChatSP" + Value?.ProgramCode?.toLowerCase() + Value?.userMaster_ID,
