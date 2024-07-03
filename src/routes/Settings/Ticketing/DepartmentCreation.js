@@ -77,7 +77,7 @@ class DepartmentCreation extends Component {
         })
             .then(function (res) {
                 if (res.data.statusCode === 200) {
-                    //debugger
+                    //
 
                     // Define the first JSON data containing labels
                     //const labelsData = self.state.UserList;
@@ -87,7 +87,7 @@ class DepartmentCreation extends Component {
                     // Create a mapping of value to label
                     //const valueToLabelMap = {};
                     // labelsData.forEach(item => {
-                    //     //debugger
+                    //     //
                     //     valueToLabelMap[item.value] = item.label;
                     // });
                     //console.log("valueToLabelMap===",valueToLabelMap);
@@ -152,7 +152,7 @@ class DepartmentCreation extends Component {
             .catch((error) => console.log(error));
     };
     handleCreateDepartment = () => {
-        debugger
+        
         if (this.state.isValidEmail && this.state.emailID.length > 0 && this.state.isValidName && this.state.departmentame.length > 0 && this.state.selectedUser.length > 0 && this.state.priorityId > 0) {
             //console.log("test regex");
             let self = this;
@@ -215,7 +215,7 @@ class DepartmentCreation extends Component {
         })
             .then(function (res) {
 
-                //debugger;
+                //;
                 if (res.data.statusCode === 200) {
                     NotificationManager.success("Record Deleted successfully.");
                     self.handleGetDepartmentData()
@@ -230,7 +230,7 @@ class DepartmentCreation extends Component {
     }
     handleSelectChange = (a, b) => {
         // console.log("label",b)
-        //debugger
+        //
         const selectedVal = b === null ? "" : b?.map(item => item.value).join(", ");
         //const selectedlabel = b.map(itemlable => itemlable.label)
         //console.log("slectedlabel",selectedlabel),
@@ -292,7 +292,7 @@ class DepartmentCreation extends Component {
         })
     }
     handlePriorityID = (e) => {
-        debugger
+        
         const valprId = parseInt(e.target.value)
         const numRegex = new RegExp("^[1-3]$")
         const prioId = numRegex.test(valprId)

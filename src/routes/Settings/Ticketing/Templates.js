@@ -199,7 +199,7 @@ class Templates extends Component {
 
   handleGetTicketFields = () => {
     let self = this;
-    //debugger
+    //
     axios({
       method: "post",
       url: config.apiUrl + "/Module/GetTicketFields",
@@ -264,7 +264,7 @@ class Templates extends Component {
       selectedArr;
     for (let i = 0; i < ckDataArrNew.length; i++) {
       if (loopFlag) {
-        // //debugger
+        // //
         if (this.state.ckCusrsorData.trim() == ckDataArrNew[i].trim()) {
           selectedVal = ckDataArrNew[i];
           selectedArr = i;
@@ -310,7 +310,7 @@ class Templates extends Component {
   handleUpdateTemplate() {
     const TranslationContext = this.state.translateLanguage.default;
     // console.log(this.state.editorContent, "editorContent");
-    // //debugger
+    // //
     let self = this;
     var activeStatus = false;
     var issuetype = "";
@@ -863,7 +863,7 @@ class Templates extends Component {
   };
 
   setTemplateEditData(editdata) {
-    // //debugger
+    // //
     var templateEdit = {};
     templateEdit = editdata;
     templateEdit.template_ID = editdata.templateID;
@@ -897,7 +897,7 @@ class Templates extends Component {
   }
   handleOnChangeEditData = (e) => {
     const TranslationContext = this.state.translateLanguage.default;
-    // //debugger
+    // //
     var name = e.target.name;
     var value = e.target.value?.length < 2 ? e.target.value.trim() : e.target.value;
     var data = this.state.templateEdit;
@@ -954,7 +954,7 @@ class Templates extends Component {
   }
 
   setEditIssueType = (e) => {
-    // //debugger
+    // //
     const TranslationContext = this.state.translateLanguage.default;
 
     if (e) {
@@ -984,7 +984,7 @@ class Templates extends Component {
   };
 
   handleTemplateName(e) {
-    // //debugger 
+    // // 
     // let regexp = /^(?![\s-])[\w\s-]+$/
     // if (regexp.test(e.target.value)) {
     this.setState({
@@ -1105,7 +1105,7 @@ class Templates extends Component {
     let finalData = []
     // console.log(self.state.selectedIssueType);
     var issueTy = self.state.selectedIssueType.split(",");
-    // //debugger
+    // //
     for (var i = 0; i < issueTy.length; i++) {
       var data = {
         brandId: 0,
@@ -1292,7 +1292,7 @@ class Templates extends Component {
       headers: authHeader(),
     })
       .then(function (res) {
-        // //debugger
+        // //
         let template = res.data.responseData;
 
         if (template !== null) {
@@ -1367,7 +1367,7 @@ class Templates extends Component {
     //   headers: authHeader(),
     // })
     //   .then(function (res) {
-    //     //debugger
+    //     //
     //     let template = res.data.responseData;
 
     //     if (template !== null) {
@@ -1670,7 +1670,7 @@ class Templates extends Component {
 
   // new template flow...................
   handleSelectAll = async (divId, droppdownName) => {
-    // //debugger
+    // //
     var checkBoxList = [];
     var checkboxes = document.getElementsByName(droppdownName);
     // document.getElementById(divId).textContent =
@@ -2027,7 +2027,7 @@ class Templates extends Component {
 
 
   handleGetCategoryList(data, brandIds, bUnitId) {
-    // //debugger
+    // //
     let self = this;
     var finalBrandId = "";
     var finalBUnitId = "";
@@ -2118,7 +2118,7 @@ class Templates extends Component {
   }
 
   handleGetSubCategoryList(data, catIds) {
-    // //debugger
+    // //
     let self = this;
     var finalCatId = "";
     if (data === "add") {
@@ -2205,7 +2205,7 @@ class Templates extends Component {
   }
 
   handleGetSubSubCategoryList(data, subCatId) {
-    // //debugger
+    // //
     let self = this;
     var finalSubCatId = "";
     if (data === "add") {
@@ -2292,7 +2292,7 @@ class Templates extends Component {
   }
 
   handleGetIssuTypeList(data, subSubCatId) {
-    // //debugger
+    // //
     let self = this;
     let subOrSubCategoryId = this.state.isSubSubCategory ? this.state.selectedSubSubCategory : this.state.selectedSubCategory;
     var finalSubSubCat = "";

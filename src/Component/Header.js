@@ -96,7 +96,7 @@ const Header = () => {
 
     // notifi
     const handleShowTicket = (Ids, isFollowUp) => {
-        // //debugger
+        // //
         setState({
             ...state,
             notifiPathname: false,
@@ -147,6 +147,7 @@ const Header = () => {
         });
     };
     const chatNotificationHandler= () =>{
+       
       
         localStorage.removeItem("newUnreadCount");
         

@@ -381,7 +381,7 @@ class MyTicketList extends Component {
     //     this.handleSearchTicket(this.state.SearchTicketAllTabCount[0]?.statusId);
     //   }
     // }, 500);
-    //debugger
+    //
     this.handleGetTableFilters();
     this.handleGetDesignationList();
     this.handleGetTicketPriorityList();
@@ -550,7 +550,7 @@ class MyTicketList extends Component {
       headers: authHeader(),
     })
       .then(function (res) {
-        //debugger
+        //
         let data = res.data.responseData;
         let Status = res.data.message;
         if (Status === "Success") {
@@ -596,7 +596,7 @@ class MyTicketList extends Component {
   }
 
   handleSearchTicket(TabId) {
-    // //debugger
+    // //
     this.state.sortTicketData = [];
     this.state.sortCategoryData = [];
     this.state.sortPriorityData = [];
@@ -847,7 +847,7 @@ class MyTicketList extends Component {
           }
         }
 
-        //debugger
+        //
         if (Status === "Success") {
           self.setState({
             tabletotalPages: totalPage
@@ -1298,7 +1298,7 @@ class MyTicketList extends Component {
           resultCount: 0,
         },
         () => {
-          // debugger
+          // 
           this.ViewSearchData(1);
         }
       );
@@ -1312,7 +1312,7 @@ class MyTicketList extends Component {
           resultCount: 0,
         },
         () => {
-          // debugger
+          // 
           this.ViewSearchData(1);
         }
       );
@@ -1326,7 +1326,7 @@ class MyTicketList extends Component {
           resultCount: 0,
         },
         () => {
-          //debugger
+          //
           this.ViewSearchData(1);
         }
       );
@@ -1342,7 +1342,7 @@ class MyTicketList extends Component {
           IssueTypeData: [],
         },
         () => {
-          //debugger
+          //
           this.ViewSearchData(1);
         }
       );
@@ -1387,7 +1387,7 @@ class MyTicketList extends Component {
           isDraftClick: false,
         },
         () => {
-          //debugger
+          //
           this.ViewSearchData(1);
         }
       );
@@ -2098,7 +2098,7 @@ class MyTicketList extends Component {
       headers: authHeader(),
     })
       .then(function (res) {
-        //debugger
+        //
         let data = res.data.responseData;
         self.setState({ SearchListData: data });
       })
@@ -2707,7 +2707,7 @@ class MyTicketList extends Component {
       },
     })
       .then(function (res) {
-        debugger
+        
         let statusCodeg = res.data.statusCode
         if (statusCodeg === 1001) {
           self.setState({
@@ -6386,7 +6386,7 @@ class MyTicketList extends Component {
       });
 
       setTimeout(() => {
-        //debugger
+        //
         this.ViewSearchData(1, "savedFilter");
       }, 1000);
     }
@@ -6401,7 +6401,7 @@ class MyTicketList extends Component {
         ActiveTabId: 2,
       });
       setTimeout(() => {
-        //debugger
+        //
         this.ViewSearchData(1, "savedFilter");
       }, 1000);
     }
@@ -6414,7 +6414,7 @@ class MyTicketList extends Component {
         ActiveTabId: 3,
       });
       setTimeout(() => {
-        //debugger
+        //
         this.ViewSearchData(1, "savedFilter");
       }, 1000);
     }
@@ -6428,7 +6428,7 @@ class MyTicketList extends Component {
         ActiveTabId: 4,
       });
       setTimeout(() => {
-        //debugger
+        //
         this.ViewSearchData(1, "savedFilter");
       }, 1000);
     }
@@ -6477,20 +6477,20 @@ class MyTicketList extends Component {
         ActiveTabId: 5,
       });
       setTimeout(() => {
-        //debugger
+        //
         this.ViewSearchData(1, "savedFilter");
       }, 1000);
     }
   };
   handlePageItemchange = async (e) => {
-    //debugger
+    //
     let val = parseInt(e.target.value)
     await this.setState({
       postsPerPage: val,
       currentPage: 1
     });
     if (this.state.viewSearchApi) {
-      //debugger
+      //
       this.ViewSearchData();
 
     } else {
@@ -6501,7 +6501,7 @@ class MyTicketList extends Component {
 
   };
   handlePrevNext = async (value) => {
-    //debugger
+    //
     let self = this
     if (value === 'prev') {
       await self.setState({
@@ -6514,7 +6514,7 @@ class MyTicketList extends Component {
       })
     }
     if (this.state.viewSearchApi) {
-      //debugger
+      //
       this.ViewSearchData();
 
     }
@@ -6530,7 +6530,7 @@ class MyTicketList extends Component {
       // tabFlag:false
     })
     if (this.state.viewSearchApi) {
-      //debugger
+      //
       this.ViewSearchData()
 
     }

@@ -85,7 +85,7 @@ class SMS extends Component {
 
     }
     handleGetSMSData = () => {
-        //debugger
+        //
         let self = this;
         axios({
             method: "post",
@@ -97,7 +97,7 @@ class SMS extends Component {
 
                 // console.log("datasms",data);
                 if (res.data.statusCode === 200) {
-                    // debugger;
+                    // ;
                     // sms = data
                     self.setState({
                         smsdata: res.data.responseData
@@ -211,7 +211,7 @@ class SMS extends Component {
         }
     }
     handelVenderID = (e) => {
-        // debugger;
+        // ;
         let self = this
         let data = e.target.value
         let vendorId = data.split(',')
@@ -233,7 +233,7 @@ class SMS extends Component {
         }
     }
     handlePlaceHolder = (e) => {
-        //debugger
+        //
         let placedata = e.target.value
         let placetagget = placedata.split(",")
         this.setState({
@@ -263,7 +263,7 @@ class SMS extends Component {
 
     }
     handleUpdateSMS = () => {
-        // debugger
+        // 
         let self = this;
         axios({
             method: "post",
@@ -317,7 +317,7 @@ class SMS extends Component {
                 .then(function (res) {
 
                     if (res.data.statusCode === 200) {
-                        //debugger;
+                        //;
                         // sms = data
                         NotificationManager.success("SMS Template Created Successfully")
                         self.setState({

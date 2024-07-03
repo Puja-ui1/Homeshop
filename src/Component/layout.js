@@ -4,12 +4,12 @@ import Aux from "./child";
 
 export default class layout extends Component {
   render() {
-    // //debugger
+    // //
     const { children } = this.props;
     return (
       <Aux>
         <Header />
-        <div className="main-content" style={{ backgroundColor: "#f5f8f9" }}>
+        <div className="main-content" style={{ backgroundColor: "#f5f8f9"  ,overflowX:"hidden"}}>
           {children}
         </div>
       </Aux>

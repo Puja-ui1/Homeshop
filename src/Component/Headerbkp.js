@@ -191,7 +191,7 @@ class Headerbkp extends Component {
 			headers: authHeader(),
 		})
 			.then(function (res) {
-				// //debugger
+				// //
 				let status = res.data.message;
 				let data = res.data.responseData;
 				if (status === "Success") {
@@ -214,7 +214,7 @@ class Headerbkp extends Component {
 		// this.handleConfigureTimeout();//p3
 		// this.handleCRMRole(); //p11
 
-		//    //debugger
+		//    //
 		this.handleSocket()
 		this.handleGetStatusDropDown()
 
@@ -385,13 +385,13 @@ class Headerbkp extends Component {
 				//localStorage.setItem("abcd",JSON.stringify(data[0]))
 				console.log(data, "data");
 				var chatData;
-				// debugger
+				// 
 				// NotificationManager.info(data[0])
 				if (programCode !== "" && data[4] !== "" && data[4]) {
 					if (
 						programCode.toLowerCase() === data[4].toLowerCase()
 					) {
-						debugger
+						
 						var isMobileNoExist = []
 						// let chatData = JSON.parse(localStorage.getItem("ongoingChatsData"));
 						let ongChat = JSON.parse(localStorage.getItem("ongoingChatsData"))
@@ -491,7 +491,7 @@ class Headerbkp extends Component {
 			function (res) {
 				var ongoingChatsData = [];
 				let ongoingUnreadCount = 0
-				// debugger
+				// 
 				// console.log("Header Response ", res)
 				if (res.length > 0) {
 					for (let i = 0; i < res.length; i++) {
@@ -544,13 +544,13 @@ class Headerbkp extends Component {
 		let self = this
 		socket.send("hi");
 		socket.emit("CallNewChatSP", Value);
-		//debugger
+		//
 		socket.on(
 			"CallNewChatSP" +
 			Value?.ProgramCode?.toLowerCase() +
 			Value?.userMaster_ID,
 			function (result) {
-				// debugger
+				// 
 				// console.log("resultnewchat",result)
 				var newChatsIncomingData = [];
 				let newUnreadCount = 0
@@ -1239,7 +1239,7 @@ class Headerbkp extends Component {
 
 	// notifi
 	handleShowTicket(Ids, isFollowUp) {
-		// //debugger
+		// //
 		this.setState({
 			notifiPathname: false,
 		})

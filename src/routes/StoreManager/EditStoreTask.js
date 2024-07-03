@@ -118,7 +118,7 @@ class EditStoreTask extends Component {
     }
   }
   handleHasAttachmetModalOpen(attachment) {
-    //debugger
+    //
     console.log("attachment", attachment, attachment[0].attachmentName.match(/\.(.*)$/)[1])
     // var filedata = this.state.FileAttachment.filter((x) => x.id === msgID); FinalAttachmentData: filedata
     this.setState({ hasAttachmentModal: true, FinalAttachmentData: attachment });
@@ -321,7 +321,7 @@ class EditStoreTask extends Component {
 
   ////handle add comment by task id
   handleAddCommentByTaskId(type) {
-    //debugger
+    //
     let self = this;
     const TranslationContext = this.state.translateLanguage.default;
 
@@ -742,7 +742,7 @@ class EditStoreTask extends Component {
       }
     }
     if (name == "attchment") {
-      //debugger
+      //
       if (value !== "") {
         this.setState({
           attachmentValue: e.target.files,

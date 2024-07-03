@@ -46,7 +46,7 @@ class ApplicationInfo extends Component {
     }
   }
   handleGetTicketField = () => {
-    // //debugger
+    // //
     let self = this;
     axios({
       method: "post",

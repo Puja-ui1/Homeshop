@@ -472,7 +472,7 @@ class TicketSystem extends Component {
 
   }
   handleGetTicketField = () => {
-    // //debugger
+    // //
     let self = this;
     axios({
       method: "post",
@@ -1383,7 +1383,7 @@ class TicketSystem extends Component {
             isBusinessUnit_Dependent: data[0].isBusinessUnit
           });
           if (data.length === 1) {
-            // //debugger
+            // //
             self.setState({
               selectedBrand: data[0].brandID,
             }, () => {
@@ -1476,7 +1476,7 @@ class TicketSystem extends Component {
   }
 
   handleGetSubSubCategoryList() {
-    // //debugger
+    // //
     let self = this;
 
     let cateId = this.state.KbLink
@@ -1507,7 +1507,7 @@ class TicketSystem extends Component {
 
   handleGetBusinessUnit() {
     let self = this;
-    // //debugger
+    // //
     axios({
       method: "post",
       url: config.apiUrl + "/Master/GetBusinessUnitList",
@@ -1532,7 +1532,7 @@ class TicketSystem extends Component {
 
   handleGetSubBusinessUnit() {
     let self = this;
-    // //debugger
+    // //
     axios({
       method: "post",
       url: config.apiUrl + "/Master/GetSubBusinessUnitList",
@@ -2698,7 +2698,7 @@ class TicketSystem extends Component {
 
 
   setBrandValues = (e) => {
-    // //debugger
+    // //
     let value = e.currentTarget.value;
     this.setState({
       selectedBrand: value,
@@ -2714,7 +2714,7 @@ class TicketSystem extends Component {
 
     setTimeout(() => {
       if (this.state.selectedBrand) {
-        // //debugger
+        // //
         if (window.localStorage.getItem('Programcode') === "campusshoes" || (this.state.ticketFields.filter((x) => x.fieldName.toLowerCase() === "BusinessUnit".toLowerCase()).length > 0
           ? this.state.ticketFields.filter((x) => x.fieldName.toLowerCase() === "BusinessUnit".toLowerCase())[0].createPage : false)) {
           this.handleGetBusinessUnit();
@@ -2733,7 +2733,7 @@ class TicketSystem extends Component {
 
 
   handleBusinessUnit = (e) => {
-    //debugger
+    //
     let businessUnitValue = e.currentTarget.value;
     this.setState({
       selectedBusinessUnit: businessUnitValue,
@@ -2784,7 +2784,7 @@ class TicketSystem extends Component {
 
 
   setCategoryValue = (e) => {
-    //debugger
+    //
     let value = e.currentTarget.value;
     this.setState({
       selectedCategory: value,
@@ -2831,7 +2831,7 @@ class TicketSystem extends Component {
     }, 1);
   };
   setSubCategoryValue = (e) => {
-    //debugger
+    //
     let value = e.currentTarget.value;
     this.setState({
       selectedSubCategory: value,
@@ -2847,7 +2847,7 @@ class TicketSystem extends Component {
 
     setTimeout(() => {
       if (this.state.selectedSubCategory) {
-        //debugger
+        //
         // if (window.localStorage.getItem('Programcode') === "campusshoes") {
         if (this.state.BrandData[0].isSubSubCategory) {
           this.handleGetSubSubCategoryList()
@@ -2867,7 +2867,7 @@ class TicketSystem extends Component {
     }, 100);
   };
   setSubSubCategoryValue = (e) => {
-    //debugger
+    //
     let value = e.currentTarget.value;
     if (value === "Select Sub Sub CategoryId") {
       this.setState({
@@ -2918,7 +2918,7 @@ class TicketSystem extends Component {
     }, 1);
   };
   setChannelOfPurchaseValue = (e) => {
-    //debugger
+    //
     let value = e.currentTarget.value;
     this.setState({
       selectedChannelOfPurchase: value,
@@ -3423,7 +3423,7 @@ class TicketSystem extends Component {
   };
 
   handleGetUserProfileData() {
-    //debugger
+    //
     let self = this;
     axios({
       method: "post",
@@ -3652,7 +3652,7 @@ class TicketSystem extends Component {
   };
 
   handleSearchOrderType = (e) => {
-    //debugger
+    //
     let self = this;
     self.setState({
       searchType: e.target.id
@@ -3768,7 +3768,7 @@ class TicketSystem extends Component {
     })
   }
   // handleOrderUnknow = (e) => {
-  //   debugger
+  //   
   //   let id = e.target.id
   //   console.log("id", id)
   //   if (id === "unknownShow_Id") {
@@ -3967,7 +3967,7 @@ class TicketSystem extends Component {
     }
   }
   returnCancelEligiblility = (type, itemId) => {
-    // debugger
+    // 
     let self = this;
     axios({
       method: "get",
@@ -4000,7 +4000,7 @@ class TicketSystem extends Component {
   }
 
   getDefaultSubOrderView = (type) => {
-    // debugger
+    // 
     let self = this;
     self.setState({
       subOrderShow: type,
@@ -4014,7 +4014,7 @@ class TicketSystem extends Component {
     })
   }
   getReturnData = (data, type) => {
-    // debugger
+    // 
     let self = this;
     self.getDefaultSubOrderView(type)
     self.setState({
@@ -4087,7 +4087,7 @@ class TicketSystem extends Component {
   }
   handleCancel = () => {
     let self = this;
-    //debugger
+    //
     let inputParam = {
       ticketId: "",
       customerID: self.state.customer_Id,
@@ -4171,7 +4171,7 @@ class TicketSystem extends Component {
       creditNotes: [],
       isOrderSearchCreditLoading: true
     })
-    // debugger
+    // 
     if (self.state.creditNoteOrderId !== "") {
       axios({
         method: "get",
@@ -4520,7 +4520,7 @@ class TicketSystem extends Component {
     }
   }
   handleRadioChange = (e) => {
-    //debugger
+    //
     let val = e.target.value
     //console.log("val",val)
     this.setState({
@@ -4528,7 +4528,7 @@ class TicketSystem extends Component {
     })
   }
   handleEscalationDate = (e) => {
-    //debugger
+    //
     console.log(e.target.value, "e.target.value");
     let data = e.target.value
     this.setState({
@@ -4619,7 +4619,7 @@ class TicketSystem extends Component {
 
   }
   handelSelectItemADB = (e) => {
-    //debugger
+    //
     let val = e.target.value
     if (val === "-1") {
       this.setState({

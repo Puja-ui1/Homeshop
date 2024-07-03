@@ -48,7 +48,7 @@ const SocialChannel = () => {
         setopendropdown(!opendropdown);
     };
     const handleList = (e) => {
-        debugger
+        
         setselect(e.sourceName)
         setopendropdown(false)
         setdropdwn(e.sourceName)
@@ -112,7 +112,7 @@ const SocialChannel = () => {
 
     }
     const handleUpdateSocialChannelIntergration = () => {
-        debugger
+        
         setloader(true)
         const params = {
             channelSourceID: sourceIdDrp,
@@ -141,7 +141,7 @@ const SocialChannel = () => {
     }
     const handleLoginFaceBookOthertab = () => {
 
-        debugger
+        
         axios({
             method: "GET",
             url: config.apiUrlsocial + "/Facebook/Login",
@@ -155,7 +155,7 @@ const SocialChannel = () => {
                 let statusCode = res.data.response_Code
                 let opendata = res.data.data
                 if (statusCode === 200) {
-                    debugger
+                    
                     seturldata(opendata)
                 }
                 else {
@@ -181,7 +181,7 @@ const SocialChannel = () => {
                 let statusCode = res.data.response_Code
                 let opendata = res.data.data
                 if (statusCode === 200) {
-                    debugger
+                    
                     seturldata(opendata)
 
                 }
@@ -258,7 +258,7 @@ const SocialChannel = () => {
 
     }
     const handleDeletePageFacebook = (e, index) => {
-        debugger
+        
 
         let iddelete = e.id
         setdeleteLoader(true)
@@ -288,7 +288,7 @@ const SocialChannel = () => {
 
     }
     const handleDeletePageInstagram = (e, index) => {
-        debugger
+        
 
         let iddelete = e.id
         setdeleteLoader(true)
@@ -858,7 +858,7 @@ const SocialChannel = () => {
 //         })
 //     }
 //     handleList = (e) => {
-//         debugger
+//         
 //         let self = this
 //         self.setState({
 //             dropdwn: e.sourceName,
@@ -972,7 +972,7 @@ const SocialChannel = () => {
 //     }
 //     handleLoginFaceBookOthertab = () => {
 //         let self = this
-//         debugger
+//         
 //         axios({
 //             method: "GET",
 //             url: "https://qa-api-socialconnector.ercx.co/api/Facebook/Login",
@@ -986,7 +986,7 @@ const SocialChannel = () => {
 //                 let statusCode = res.data.response_Code
 //                 let opendata = res.data.data
 //                 if (statusCode === 200) {
-//                     debugger
+//                     
 //                     self.setState({
 //                         urldata: opendata,
 //                     })
@@ -1000,7 +1000,7 @@ const SocialChannel = () => {
 //     }
 //     handleLoginInstaGramOthertab = () => {
 //         let self = this
-//         debugger
+//         
 //         axios({
 //             method: "GET",
 //             url: "https://qa-api-socialconnector.ercx.co/api/Instagram/Login",
@@ -1014,7 +1014,7 @@ const SocialChannel = () => {
 //                 let statusCode = res.data.response_Code
 //                 let opendata = res.data.data
 //                 if (statusCode === 200) {
-//                     debugger
+//                     
 //                     self.setState({
 //                         urldata: opendata
 
@@ -1107,7 +1107,7 @@ const SocialChannel = () => {
 
 //     }
 //     handleDeletePageFacebook = (e, index) => {
-//         debugger
+//         
 //         let self = this
 //         let iddelete = e.id
 //         self.setState({

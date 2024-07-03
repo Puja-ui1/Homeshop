@@ -407,7 +407,7 @@ class Chatbotbkp extends Component {
             if (
               self.state.programCode.toLowerCase() === data[4].toLowerCase()
             ) {
-              debugger
+              
               var isMobileNoExist = self.state.ongoingChatsData.filter(
                 (x) =>
                   x.mobileNo === data[3].toString() &&
@@ -1004,7 +1004,7 @@ class Chatbotbkp extends Component {
   // }
   //handle get chat messgae by chat id
   handleGetChatMessagesList(id, RecentChat, isScrollTop) {
-    debugger
+    
     let self = this;
     var forRecentChat = 0;
     var urlType = "";
@@ -3395,7 +3395,7 @@ class Chatbotbkp extends Component {
   };
 
   //handle get chat notification count
-  async handleGetChatNotificationCount() {
+  async  handleGetChatNotificationCount() {
     let self = this;
     var objNotiCount = {
       userMaster_ID: this.state.AgentID,
@@ -5384,6 +5384,7 @@ class Chatbotbkp extends Component {
                                   >
                                     Create Ticket
                                   </button>
+                                  {/* create ticket */}
                                   <Modal
                                     open={this.state.CrateTicketMdl}
                                     onClose={this.handleCreateTicketModalCls.bind(

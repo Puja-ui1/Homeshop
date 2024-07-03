@@ -749,7 +749,7 @@ class Users extends Component {
   }
   setUserEditData = async (e) => {
     let self = this;
-    // //debugger
+    // //
     var userEditData = e;
     console.log('adadadadad', userEditData)
     userEditData.user_Id = userEditData.userId;
@@ -801,7 +801,7 @@ class Users extends Component {
     //   selectedSourceRadio: userEditData.isTicketAssignment,
     // })
     await setTimeout(async () => {
-      //debugger
+      //
       self.setState({
         userEditData,
         editIndibrandName: userEditData.brandIDs !== null ? userEditData.brandIDs : '',
@@ -895,7 +895,7 @@ class Users extends Component {
 
 
   handleEditTicketSource = (e) => {
-    // //debugger
+    // //
     let subjectvalue = e;
     // this.setState({
     //   selectedSourceRadio: subjectvalue,
@@ -1270,7 +1270,7 @@ class Users extends Component {
       });
   }
   handleGetCategoryList(data, brandIds) {
-    // //debugger
+    // //
     let self = this;
     var finalBrandId = "";
     if (data === "add") {
@@ -1854,7 +1854,7 @@ class Users extends Component {
   }
 
   handleAddMapCategory() {
-    //debugger
+    //
     const TranslationContext = this.state.translateLanguage.default;
 
     var radiob = true;
@@ -2112,7 +2112,7 @@ class Users extends Component {
       });
   }
   handleUpdateUser() {
-     //debugger
+     //
     const TranslationContext = this.state.translateLanguage.default;
     var radiob = true;
     var agentb = true;
@@ -2808,7 +2808,7 @@ class Users extends Component {
 
   //Edit source ticket//
   handleEditSourceTicketName = () => {
-    //debugger
+    //
     this.setState({
       editOverlaySourceTicket: !this.state.editOverlaySourceTicket,
       editOverlaySourceTicketNameShow: !this.state.editOverlaySourceTicketNameShow
@@ -2817,7 +2817,7 @@ class Users extends Component {
   };
 
   selectAllEditSourceTicket = async (event) => {
-    // //debugger
+    // //
     var editOverlaySourceTicketName = "";
     var checkboxes = document.getElementsByName("editAllSourceName");
     document.getElementById("editSourceNameValue").textContent = "All Selected";
@@ -2864,7 +2864,7 @@ class Users extends Component {
     });
   };
   selectIndividualEditSourceName = async (ticketSourceId, event) => {
-    // //debugger
+    // //
     var editOverlaySourceTicketName = this.state.editOverlaySourceTicketName;
     var separator = ",";
     var values = editOverlaySourceTicketName.split(separator);
@@ -3689,7 +3689,7 @@ class Users extends Component {
   };
   /// hanlde select Individual Sub campaign name
   selectIndividualEditSubCampaignName = async (subCampaignId, event) => {
-    // //debugger
+    // //
     // var editIndiSubCategoryName = this.state.editIndiSubCategoryName;
     // var separator = ",";
     // var values = editIndiSubCategoryName.split(separator);

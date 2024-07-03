@@ -464,7 +464,7 @@ class Dashboard extends Component {
   componentDidMount() {
     // this.handleSearchTicketEscalation();   // this is called for bydefault content
     // this.handleTicketsOnLoad();
-    // //debugger
+    // //
     this.setState({
       TicketStatusData: TicketStatus()
     })
@@ -877,7 +877,7 @@ class Dashboard extends Component {
   };
 
   setSortCheckStatus = (column, type, e) => {
-    // //debugger
+    // //
     console.log("sortFilterTicketData 1", this.state.sortFilterTicketData)
     var itemsArray = this.state.tempSearchTicketData;
     var sticketStatusFilterCheckbox = this.state.sticketStatusFilterCheckbox;
@@ -2664,7 +2664,7 @@ class Dashboard extends Component {
     });
 
     setTimeout(() => {
-      // //debugger
+      // //
       this.setState({
         tempSearchTicketData: itemsArray,
       });
@@ -3039,7 +3039,7 @@ class Dashboard extends Component {
       });
   }
   handleGetDashboardFeedbackCountData = () => {
-    //debugger
+    //
     this.setState({ loadingFeedback: true, CSATCount: 0, DSATCount: 0, NeutralCount: 0 });
     let self = this;
     var fromdate = moment(self.state.start).format("YYYY-MM-DD");
@@ -3056,13 +3056,13 @@ class Dashboard extends Component {
       },
     })
       .then(function (res) {
-        debugger
+      
         let status = res.data.message;
         let data = res.data.responseData;
 
         if (status === "Success") {
           if (data.length > 0) {
-            debugger
+          
             const csat = data?.filter(item => item.key === 'CSAT')[0]?.value;
             const dsat = data?.filter(item => item.key === 'DSAT')[0]?.value;
             const neutr = data?.filter(item => item.key === 'Neutral')[0]?.value;
@@ -3248,7 +3248,7 @@ class Dashboard extends Component {
     }
   }
   checkAllBrandStart(event) {
-    // debugger
+    // 
     var checkboxes = document.getElementsByName("allBrand");
     var strBrandIds = "";
     for (var i in checkboxes) {
@@ -3273,7 +3273,7 @@ class Dashboard extends Component {
     }
   }
   checkIndividualAgent = (event) => {
-    //debugger
+    //
     var agentcount = 0;
     var checkboxes = document.getElementsByName("allAgent");
     var strAgentIds = "";
@@ -3318,7 +3318,7 @@ class Dashboard extends Component {
     );
   };
   checkIndividualBrand = (event) => {
-    // debugger
+    // 
     var brandcount = 0;
     var checkboxes = document.getElementsByName("allBrand");
     var strBrandIds = "";
@@ -3365,7 +3365,7 @@ class Dashboard extends Component {
     );
   };
   checkAllAgent = async (event) => {
-    //debugger
+    //
     this.setState((state) => ({ CheckBoxAllAgent: !state.CheckBoxAllAgent }));
     var strAgentIds = "";
     const allCheckboxChecked = event.target.checked;
@@ -3404,7 +3404,7 @@ class Dashboard extends Component {
     this.ViewSearchData();
   };
   checkAllBrand = async (event) => {
-    //debugger
+    //
     this.setState((state) => ({ CheckBoxAllBrand: !state.CheckBoxAllBrand }));
     var strBrandIds = "";
     const allCheckboxChecked = event.target.checked;
@@ -4067,7 +4067,7 @@ class Dashboard extends Component {
       }
     }
     this.handleGetUniqueValues(tempSearchTicketData);
-    // //debugger
+    // //
     this.setState({
       StatusModel: false,
       // filterTxtValue: "",
@@ -4121,7 +4121,7 @@ class Dashboard extends Component {
       }
     })
       .then(function (res) {
-        // debugger
+        // 
         if (res.data.statusCode === 200) {
           self.setState({
             DashboardBillGraphData: res.data.responseData,
@@ -4508,7 +4508,7 @@ class Dashboard extends Component {
       });
   }
   handleSchedulePopup() {
-    // //debugger
+    // //
     const TranslationContext = this.state.translateLanguage.default;
     if (
       this.state.selectScheduleDate === 0 ||
@@ -4620,7 +4620,7 @@ class Dashboard extends Component {
     }
   }
   handleSchedulePopupSuccess() {
-    // //debugger
+    // //
     const TranslationContext = this.state.translateLanguage.default;
     let self = this;
     var month, day, year, hours, minutes, seconds;
@@ -5281,7 +5281,7 @@ class Dashboard extends Component {
   }
 
   ViewSearchData(Shwcheck, search) {
-    // //debugger
+    // //
     let self = this;
     this.setState({ loading: true });
 
@@ -5885,7 +5885,7 @@ class Dashboard extends Component {
               }
             }
 
-            // //debugger
+            // //
             for (let i = 0; i < distinct.length; i++) {
               self.state.sortTicketData.push({ ticketStatus: distinct[i] });
               self.state.sortFilterTicketData.push({
@@ -6074,7 +6074,7 @@ class Dashboard extends Component {
           };
           // console.log(JSON.stringify(appliedTableFilters));
           // console.log((appliedTableFilters).toString());
-          //debugger
+          //
           let ticketDetail = {
             ticketDetailID: Id,
             sourceName: ticketSourceType,
@@ -6623,7 +6623,7 @@ class Dashboard extends Component {
   }
 
   filteTextChange(e) {
-    // //debugger
+    // //
     this.setState({ filterTxtValue: e.target.value });
     if (this.state.sortColumnName === "status") {
       var sortFilterTicketData = matchSorter(
@@ -6728,7 +6728,7 @@ class Dashboard extends Component {
 
   /// handle per page item change
   handlePageItemchange = async (e) => {
-    //debugger
+    //
     let val = parseInt(e.target.value)
     await this.setState({
       postsPerPage: val,
@@ -6737,7 +6737,7 @@ class Dashboard extends Component {
     this.ViewSearchData();
   };
   handlePrevNext = async (value) => {
-    //debugger
+    //
     let self = this
     if (value === 'prev') {
       await self.setState({
@@ -6799,7 +6799,7 @@ class Dashboard extends Component {
   };
 
   handleGetUniqueValues = (data) => {
-    // //debugger
+    // //
     let itemsArray = data.length > 0 ? data : this.state.sortAllData;
     let sortCategoryData = [];
     let sortTicketData = [];

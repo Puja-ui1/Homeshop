@@ -103,7 +103,7 @@ class StoreTaskByTicket extends Component {
 
   handleMultiDownload = (e) => {
     e.preventDefault();
-    //debugger
+    //
     var temporaryDownloadLink = document.createElement("a");
     temporaryDownloadLink.style.display = 'none';
     document.body.appendChild(temporaryDownloadLink);
@@ -744,7 +744,7 @@ class StoreTaskByTicket extends Component {
         let status = res.data.message;
         let data = res.data.responseData;
         if (status === "Success") {
-          //debugger;
+          //;
           const newSelected = Object.assign({}, self.state.CheckStoreID);
           let selectedStoreIds = self.state.selectedStoreIds;
           var selectedRow = [];
@@ -919,7 +919,7 @@ class StoreTaskByTicket extends Component {
       },
     })
       .then(function (res) {
-        //debugger;
+        //;
         let Msg = res.data.message;
         let mainData = res.data.responseData;
         var OrderSubItem = [];

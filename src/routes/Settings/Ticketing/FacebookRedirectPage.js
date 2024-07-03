@@ -10,7 +10,7 @@ class FacebookRedirect extends Component {
 
     }
     componentDidMount = async () => {
-        debugger
+        
         const params = new URLSearchParams(window.location.search);
         const val = params.get('code')
         const error = params.get('error')

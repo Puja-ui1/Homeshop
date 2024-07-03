@@ -2517,8 +2517,9 @@ table th {
 
 table td {
 	font-size: 13px;
-	color: #9b9b9b;
+	color: #0d0d0e;
 	padding: 18px 23px;
+	border-bottom: none;
 }
 
 table thead img {
@@ -3503,6 +3504,11 @@ table tr th:last-child {
 	height: calc(100vh - 58px);
 	position: relative;
 	width: auto;
+}
+/* Added new css on 27 june */
+.newChat_right{
+overflow-x: hidden;
+height: fit-content !important;
 }
 
 .chat-left-height {
@@ -18313,7 +18319,7 @@ table tr th:last-child {
 .pass-modal .ant-modal-content {
 	position: relative;
 	border-radius: 5px !important;
-	width: 400px !important;
+	width: 870px !important;
 }
 
 .passmodal-heading {
@@ -20250,5 +20256,56 @@ input[type=number]::-webkit-outer-spin-button {
 	overflow: visible;
 	text-wrap: wrap;
 	word-wrap: break-word;
-	
 }
+	
+/*changes in current chant section */
+.chat-input-container {
+	width: 500px;
+	background: white;
+	padding: 10px;
+	border-radius: 8px;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .toolbar {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-bottom: 10px;
+  }
+  
+  .toolbar button {
+	background: none;
+	border: none;
+	cursor: pointer;
+	font-size: 1.2em;
+  }
+  
+  .toolbar .tags {
+	margin-left: auto;
+	margin-right: 10px;
+  }
+  
+  textarea {
+	width: 100%;
+	height: 100px;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	padding: 10px;
+	resize: none;
+  }
+  
+  .send-button {
+	display: flex;
+	justify-content: flex-end;
+	margin-top: 10px;
+  }
+  
+  .send-button button {
+	background-color: #007bff;
+	color: white;
+	border: none;
+	padding: 10px 15px;
+	border-radius: 50%;
+	cursor: pointer;
+  }

@@ -77,7 +77,7 @@ export const handleSocket = (state ,setState) => {
             console.log("resultnewchat",res)
             var ongoingChatsData = [];
             let ongoingUnreadCount = 0
-            // debugger
+            // 
             console.log("Header Response ", res)
             if (res.length > 0) {
                 for (let i = 0; i < res.length; i++) {
@@ -145,11 +145,11 @@ const handleNewChat = (Value) => {
     //socket.send("hi");
     socket.emit("CallNewChatSP", Value);
     console.log("qwerr")
-    //debugger
+    //
     socket.on(
         "CallNewChatSP" + Value?.ProgramCode?.toLowerCase() + Value?.userMaster_ID,
         function (result) {
-            // debugger
+            // 
             // console.log("resultnewchat",result)
             var newChatsIncomingData = [];
             let newUnreadCount = 0

@@ -10,7 +10,7 @@ class InstagramRedirect extends Component {
 
     }
     componentDidMount = () => {
-        debugger
+        
         const params = new URLSearchParams(window.location.search);
         const val = params.get('code')
         const error = params.get('error')
@@ -31,7 +31,7 @@ class InstagramRedirect extends Component {
 
             }).then(function (res) {
                 if (res.data.response_Code === 200) {
-                    debugger
+                    
                     window.localStorage.setItem("updatedkey", JSON.stringify(val))
                     // window.opener.postMessage('login_success',window.location.origin)
                     window.close();

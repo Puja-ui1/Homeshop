@@ -406,13 +406,13 @@ const Headerfunctional = (props) => {
 // 				//localStorage.setItem("abcd",JSON.stringify(data[0]))
 // 				console.log(data, "data");
 // 				var chatData;
-// 				// debugger
+// 				// 
 // 				// NotificationManager.info(data[0])
 // 				if (programCode !== "" && data[4] !== "" && data[4]) {
 // 					if (
 // 						programCode.toLowerCase() === data[4].toLowerCase()
 // 					) {
-// 						debugger
+// 						
 // 						var isMobileNoExist = []
 // 						// let chatData = JSON.parse(localStorage.getItem("ongoingChatsData"));
 // 						let ongChat = JSON.parse(localStorage.getItem("ongoingChatsData"))
@@ -513,7 +513,7 @@ const Headerfunctional = (props) => {
 // 			function (res) {
 // 				var ongoingChatsData = [];
 // 				let ongoingUnreadCount = 0
-// 				// debugger
+// 				// 
 // 				// console.log("Header Response ", res)
 // 				if (res.length > 0) {
 // 					for (let i = 0; i < res.length; i++) {
@@ -568,11 +568,11 @@ const Headerfunctional = (props) => {
 		
 	// 	socket.send("hi");
 	// 	socket.emit("CallNewChatSP", Value);
-	// 	//debugger
+	// 	//
 	// 	socket.on(
 	// 		"CallNewChatSP" +Value?.ProgramCode?.toLowerCase() + Value?.userMaster_ID,
 	// 		function (result) {
-	// 			// debugger
+	// 			// 
 	// 			// console.log("resultnewchat",result)
 	// 			var newChatsIncomingData = [];
 	// 			let newUnreadCount = 0
@@ -685,7 +685,7 @@ const Headerfunctional = (props) => {
 
   // notifi
   const handleShowTicket = (Ids, isFollowUp) => {
-    // //debugger
+    // //
     setState({
       ...state,
       notifiPathname: false,

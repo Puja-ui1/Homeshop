@@ -1610,7 +1610,7 @@ class Module extends Component {
       });
   };
   handleLoadLImit = (e) => {
-    //debugger
+    //
     let val = e.target.value
     let numberRegex = new RegExp("^[0-9]\\d*$")
     let loadLimit = numberRegex.test(val)
@@ -1740,7 +1740,7 @@ class Module extends Component {
   handleWorkinginput = (event) => {
 
     const { checked, id, value } = event.currentTarget;
-    debugger
+    
     let SelArrEle = this.state.daysArray.findIndex((ele) => ele?.id === parseInt(id));
     if (this.state.daysArray[SelArrEle].isCheck === true) {
       this.state.daysArray[SelArrEle].isCheck = false;
@@ -1833,7 +1833,7 @@ class Module extends Component {
 
   }
   handleStartEndTimeWorking = (e) => {
-    // debugger
+    // 
     let self = this
     let name = e.target.name
     let value = e.target.value

@@ -351,7 +351,7 @@ class StoreAddTask extends Component {
       }
     }
     if (name == "attchment") {
-      //debugger
+      //
       if (value !== "") {
 
         console.log("attachment",e)

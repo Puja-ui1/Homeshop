@@ -306,7 +306,7 @@ class TicketSystemStore extends Component {
     });
   };
   handleSendStoreInfo = (e) => {
-    debugger
+    
     let self = this
     console.log("customerDatacustomerData",this.state.customerData)
     let storeId = e.storeID
@@ -326,7 +326,7 @@ class TicketSystemStore extends Component {
       })
         .then(function (res) {
 
-          //debugger;
+          //;
           if (res.data.statusCode === 200) {
             NotificationManager.success("Send successfully.");
 

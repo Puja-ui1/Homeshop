@@ -222,7 +222,7 @@ class EsclatedEmail extends Component {
                 },
             })
                 .then(function (res) {
-                    // debugger
+                    // 
 
                     if (res.data.statusCode === 200) {
                         NotificationManager.success("Record Created successfully.");
@@ -278,7 +278,7 @@ class EsclatedEmail extends Component {
     //         },
     //     })
     //         .then(function (res) {
-    //             // debugger
+    //             // 
 
     //             if (res.data.statusCode === 200) {
     //                 NotificationManager.success("Record Deleted successfully.");
@@ -302,7 +302,7 @@ class EsclatedEmail extends Component {
     // }
     handleEditModel = (e) => {
 
-        //debugger
+        //
         this.setState({
             escalationUserId: e?.escalationUserID,
             EsclatedModel: true,

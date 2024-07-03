@@ -123,7 +123,7 @@ class TicketSystemOrder extends Component {
     this.handleGetTicketSourceList();
     this.handleGetChannelOfPurchaseList();
     if (this.props.searchHide) {
-      debugger
+      
       this.setState({
         AddManuallyData: this.props.AddManuallyData,
         orderNumber: this.props.order_number
@@ -473,7 +473,7 @@ class TicketSystemOrder extends Component {
       }
       if (this.state.custAttachOrder === 0) {
         // if (this.state.orderNumber.length > 0) {
-        debugger
+        
         axios({
           method: "post",
           url: config.apiUrl + "/Order/getOrderListWithItemDetails",
@@ -641,7 +641,7 @@ class TicketSystemOrder extends Component {
   }
   hadleAddManuallyOrderData() {
     const TranslationContext = this.state.translateLanguage.default;
-    debugger
+    
     let self = this;
     var CustID = self.props.custDetails;
     // var createdDate = moment(this.state.OrderCreatDate).format("DD-MM-YYYY");
@@ -1090,7 +1090,7 @@ class TicketSystemOrder extends Component {
 
   // handleGetOderItemData(invoiceNumber, rowData, e) {
   handleGetOderItemData(e, invoiceNumber, rowData) {
-    debugger
+    
     if (e.target.checked) {
       let currentSelectedInvoiceNo = this.state.selectedInvoiceNo;
       // currentSelectedInvoiceNo += invoiceNumber + ",";
@@ -1504,7 +1504,7 @@ class TicketSystemOrder extends Component {
   // }
 
   checkIndividualItem(orderItemID, rowData) {
-    debugger
+    
     let newSelected = Object.assign({}, this.state.CheckBoxAllItem);
     newSelected[orderItemID] = !this.state.CheckBoxAllItem[orderItemID];
     this.setState({

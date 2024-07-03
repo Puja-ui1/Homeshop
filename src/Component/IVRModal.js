@@ -91,7 +91,7 @@ export default class IVRModal extends Component {
     }
   };
   handleNextBtn = () => {
-    //debugger
+    //
     console.log("selectedStatus", this.state.selectedStatus);
     console.log("selectedMode", this.state.selectedMode);
     console.log("onlineSelected", this.state.onlineSelected);

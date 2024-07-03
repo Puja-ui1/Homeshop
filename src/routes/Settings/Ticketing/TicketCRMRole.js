@@ -602,7 +602,7 @@ class TicketCRMRole extends Component {
   //   });
   // };
   checkModule = async (moduleId) => {
-    //debugger
+    //
     let modulesList = [...this.state.modulesList],
       isActive,
       ModulesEnabled = "",

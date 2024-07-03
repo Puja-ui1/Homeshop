@@ -2008,7 +2008,7 @@ class Reports extends Component {
       });
   }
   handleDownload = (id, name) => {
-    debugger
+    
     this.setState({
       loadingDownload: false,
     });
@@ -2133,7 +2133,7 @@ class Reports extends Component {
     }
   };
   handleDownloadCSAT = (e) => {
-    debugger
+    
     let self = this;
     let reportID = e.reportID
     axios({
@@ -2175,7 +2175,7 @@ class Reports extends Component {
   }
 
   downloadDefaultReport = () => {
-    debugger
+    
     let self = this;
     let sourceIds = "";
     let assignedIds = "";
@@ -3390,7 +3390,7 @@ class Reports extends Component {
     }
   };
   handleLastDayReport = () => {
-    debugger
+    
     let self = this
     self.setState({
       isLastDayReport: !this.state.isLastDayReport

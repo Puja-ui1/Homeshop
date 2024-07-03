@@ -942,7 +942,7 @@ class CategoryMaster extends Component {
 
   handleGetSubCategoryList = async (id) => {
     let self = this;
-    //debugger
+    //
 
     var Category_Id = "";
 
@@ -976,7 +976,7 @@ class CategoryMaster extends Component {
 
   ///subsub
   handleGetSubSubCategoryList = async (id) => {
-    //debugger
+    //
     let self = this;
     var SubCategory_Id = "";
     if (id === "edit") {
@@ -1272,7 +1272,7 @@ class CategoryMaster extends Component {
   }
 
   handleAddIssueType(value, type) {
-    //debugger
+    //
     // console.log(this.state.ListOfSubCate, "ListOfSubCate");
     // console.log( this.state.SubCategoryDropData, "SubCategoryDropData");
     // console.log(this.state.editCategory, "this.state.editCategory");
@@ -1334,7 +1334,7 @@ class CategoryMaster extends Component {
 
 
   handleSubmitData() {
-    //debugger
+    //
     const TranslationContext = this.state.translateLanguage.default;
     if (
       this.state.selectBrand.length > 0 &&
@@ -1586,7 +1586,7 @@ class CategoryMaster extends Component {
     }
   };
   handleCategoryChange = (value) => {
-    //debugger
+    //
     if (value !== NEW_ITEM) {
       this.setState({ list1Value: value, SubCategoryDropData: [] });
       setTimeout(() => {
@@ -1604,7 +1604,7 @@ class CategoryMaster extends Component {
 
 
   handleSubCatOnChange = (value) => {
-    //debugger
+    //
     if (value !== NEW_ITEM) {
       let subcatId = this.state.SubCategoryDropData.filter(
         (x) => x.subCategoryName === value
@@ -1628,7 +1628,7 @@ class CategoryMaster extends Component {
   };
 
   handleSubSubCatOnChange = (value) => {
-    //debugger
+    //
     if (value !== NEW_ITEM) {
       this.setState({ ListOfSubSubCate: value });
       setTimeout(() => {
@@ -3094,7 +3094,7 @@ class CategoryMaster extends Component {
                           animation="slide-from-top"
                           validationMsg="Please Enter Issue Type!"
                           onConfirm={(inputValue) => {
-                            //debugger
+                            //
                             inputValue = inputValue.trim();
                             if (inputValue !== "") {
                               this.setState({

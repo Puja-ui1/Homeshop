@@ -53,7 +53,7 @@ export const handleGetChatMessagesList = (id, RecentChat, isScrollTop=undefined,
         }
         objParam.chatID = chatID;
         objParam.ForRecentChat = forRecentChat;
-        objParam.PageNo = isScrollTop ? state.pageNumberCurrentChat : 1;
+        objParam.PageNo = isScrollTop ? state?.pageNumberCurrentChat : 1;
         urlType = "/CustomerChat/getChatMessagesListNew";
     }
    console.log("line no .57");
@@ -68,8 +68,8 @@ export const handleGetChatMessagesList = (id, RecentChat, isScrollTop=undefined,
         //  console.log("messageData",RecentChat)
 
         if (RecentChat) {
-          recentChatCount = state.pastChatCount;
-          console.log("inside if recent",state.pastChatCount)
+          recentChatCount = state?.pastChatCount;
+          console.log("inside if recent",state?.pastChatCount)
         } else {
           recentChatCount = response.responseData.recentChatCount;
         }
@@ -86,9 +86,9 @@ export const handleGetChatMessagesList = (id, RecentChat, isScrollTop=undefined,
          
   
           if (message === "Success" && messageData) {
-            console.log("Line 89999",state.showHistoricalChat)
-            if (state.showHistoricalChat) {
-                console("+++++++++++++++++++++++",state.showHistoricalChat )
+            console.log("Line 89999",state?.showHistoricalChat)
+            if (state?.showHistoricalChat) {
+                console("+++++++++++++++++++++++",state?.showHistoricalChat )
               setState({
                 ...state,
                 messageHistoryChatData: messageData,
@@ -96,7 +96,7 @@ export const handleGetChatMessagesList = (id, RecentChat, isScrollTop=undefined,
                 messageListLoader: false,
               });
 
-              console.log("msghistory",state.messageHistoryChatData)
+              console.log("msghistory",state?.messageHistoryChatData)
             } else {
               var newMessageData = [];
               if (messageData.length > 0) {
@@ -107,7 +107,7 @@ export const handleGetChatMessagesList = (id, RecentChat, isScrollTop=undefined,
               console.log("messageData.length ",messageData.length )
                  console.log(" newMessageData", newMessageData)
               if (messageData.length > 0 && isScrollTop) {
-                console.log("state.messageData.length",messageData.length)
+                console.log("state?.messageData.length",messageData.length)
 
                 for (let i = 0; i < messageData.length; i++) {
                   newMessageData.push(messageData[i]);
@@ -123,7 +123,7 @@ export const handleGetChatMessagesList = (id, RecentChat, isScrollTop=undefined,
                 isMainLoader: false,
                 messageListLoader: false,
                 pastChatCount: recentChatCount,
-                pageNumberCurrentChat: state.pageNumberCurrentChat + 1,
+                pageNumberCurrentChat: state?.pageNumberCurrentChat + 1,
                 AttachementFiles: [],
                 //message: "",
                 loading: false,
