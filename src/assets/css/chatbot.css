@@ -132,3 +132,110 @@
 .tbl_data tr {
     border-bottom: none;
 }
+
+/* recent  and current chatheader container */
+.chatbox_header_wrap{
+    display: flex;
+    justify-content: space-between;
+    background-color: #ecf2f4;
+    width: 100%;
+    padding: 5px;
+}
+
+.chatbox_header_wrap .chatbox_btn{
+    display: flex;
+    flex-direction: row;
+    margin-left: 2px;
+    margin-right: 4px;
+} 
+.chatbox_header_wrap .chatbox_btn .nav_link{
+    padding: 7px 18px;
+    background: transparent;
+    color: #2e68ac;
+    font-weight: 800;
+    font-size: 1.1em;
+    cursor: pointer;
+}
+.chatbox_header_wrap .chatbox_btn .nav_link_current{
+    border-bottom: 2px solid #2561a8;
+    border-radius: 5px;
+    
+}
+
+.chatbox_header_wrap .chatbox_btn .nav_link_recent{
+    border-bottom: 2px solid #2561a8;
+    border-radius: 5px;
+   
+}
+
+
+.chatbox_header_wrap .chatbox_action_wrap{
+    display: flex;
+    flex-direction: row;
+}
+
+.chatbox_action_wrap .dropdown .dropdown-toggle{
+    background-color: #2561a8;
+    color: #fff;
+    border-radius: 5px;
+    padding: 8px 25px;
+    cursor: pointer;
+    padding: 8px 40px;
+    margin: 0;
+    margin-right: 12px;
+   
+}
+.chatbox_action_wrap .dropdown-toggle .dropdown-menu{
+   display: block;
+}
+
+.cross_btn{
+    display: none;
+}
+.chatbox_action_wrap .close_btn{
+
+    background-color: #2561a8;
+    color: #fff;
+    border-radius: 5px;
+    padding: 7px 39px;
+    cursor: pointer;
+    margin: 2px;
+   
+    
+}
+.dropdown-menu li{
+    width: 245px
+}
+.dropdown-menu li:hover{
+    background-color: #2561a8;
+
+}
+.dropdown-menu li a {
+   
+    display: block;
+    color: #000;
+    
+}
+.dropdown-menu li a:hover, .dropdown-menu li:hover > a{
+    color: #fff;
+}
+
+/* current chat section */
+
+.user_details{
+    background-color: #fff;
+    padding: 10px 25px;
+    height: calc(100vh - 118px);
+    overflow: auto;
+}
+
+.user_info_name{
+    color: #000;
+    font-weight: 600;
+    font-size: 16px;
+}
+.user_info_num  span{
+    font-size: 11px;
+    color: #4a4a4a;
+    margin: 0 5px;
+}
