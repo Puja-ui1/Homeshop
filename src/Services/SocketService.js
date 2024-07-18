@@ -8,9 +8,9 @@ let ongochatcount = JSON.parse(localStorage.getItem("ongoingUnreadCount")) !== n
 
 let newchatcount = JSON.parse(localStorage.getItem("newUnreadCount")) !== null ? JSON.parse(localStorage.getItem("newUnreadCount")) : 0
 
-export const handleSocket = (state ,setState) => {
+export const handleSocket = (setongoingChatsData,setnewChatsData=()=>{}) => {
 
-    console.log("colorstate",state)
+    //console.log("colorstate",state)
 
     let agentId = 0;
     let tenantID = 0;
@@ -41,7 +41,7 @@ export const handleSocket = (state ,setState) => {
     socket.emit("CallOngoingSP", objOngoing);
     //socket.emit("CallNewChatSP", objNewChat);
     socket.emit("CallCurrChatSP", currChat);
-    handleNewChat(objNewChat)
+    handleNewChat(objNewChat ,setnewChatsData)
 
     // setTimeout(() => {
     //     socket.emit("CallSetCurrentChatSP", currChat);
@@ -116,16 +116,19 @@ export const handleSocket = (state ,setState) => {
                 "ongoingChatsData",
                 JSON.stringify(ongoingChatsData)
             );
-            if (ongoingChatsData.length > 0) {
-                console.log("inside color",state.colorCode[Math.floor(Math.random() * 6)])
-                for (let i = 0; i < ongoingChatsData.length; i++) {
-                  ongoingChatsData[i].initialColor =
-                   state.colorCode[Math.floor(Math.random() * 6)];
-                   console.log("inside color",state.colorCode[Math.floor(Math.random() * 6)])
-                }
-              }
+            // if (ongoingChatsData.length > 0) {
+            //     // console.log("inside color",state.colorCode[Math.floor(Math.random() * 6)])
+            //     for (let i = 0; i < ongoingChatsData.length; i++) {
+            //       ongoingChatsData[i].initialColor =
+            //        state.colorCode[Math.floor(Math.random() * 6)];
+            //        console.log("inside color",state.colorCode[Math.floor(Math.random() * 6)])
+            //     }
+            //   }
 
-              setState({ ongoingChatsData });
+            //   setState({ ongoingChatsData });
+              setongoingChatsData(ongoingChatsData)
+
+
          console.log(" ongoingChatsData", ongoingChatsData)
             ongochatcount = ongoingUnreadCount
             localStorage.setItem("ongoingUnreadCount", ongoingUnreadCount);
@@ -140,7 +143,7 @@ export const handleSocket = (state ,setState) => {
 
 
 
-const handleNewChat = (Value) => {
+const handleNewChat = (Value,setnewChatsData) => {
 
     //socket.send("hi");
     socket.emit("CallNewChatSP", Value);
@@ -195,6 +198,8 @@ const handleNewChat = (Value) => {
                     JSON.stringify(newChatsIncomingData)
                 );
                 // }
+
+                setnewChatsData(newChatsIncomingData)
                 newchatcount = newUnreadCount
                 localStorage.setItem("newUnreadCount", newUnreadCount);
 

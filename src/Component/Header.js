@@ -54,7 +54,7 @@ const Header = () => {
 
 
     useEffect(() => {
-        handleSocket(state,setState)
+        handleSocket(setState)
         handleLoggedInUserDetails(state, setState);
         handleGetNotificationList(setNotifiMessages, setNotiCount);
         handleGetStatusDropDown(state, setState);

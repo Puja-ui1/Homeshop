@@ -4554,6 +4554,8 @@ class Chatbotbkp extends Component {
                                                         </div>
                                                       )}
                                                     </div>
+
+                                                  {/* right side */}
                                                     <div
                                                       className={
                                                         item.isAttachmentDoc

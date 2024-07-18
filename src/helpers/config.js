@@ -339,7 +339,7 @@ let config = {
 
   url: "https://qa-ui-belltktqa.shopster.live",
   socketUrl: "https://qa-ndjs-belltkt.shopster.live/",
-  IVRSocketUrl: "https://qa-api-logticketingivr.ercx.co/",
+  // IVRSocketUrl: "https://qa-api-logticketingivr.ercx.co/",
   apiUrlsocial: "https://qa-api-socialconnector.ercx.co/api",
 
   //****************************//
