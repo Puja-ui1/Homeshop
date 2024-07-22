@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from "react";
+import io from 'socket.io-client';
+import { socket } from '../helpers/SocketConnection';
 import '../assets/css/chatbot.css'
 import axios from "axios";
 import config from "../helpers/config";
@@ -18,7 +20,7 @@ import { NotificationManager } from "react-notifications";
 const chatService = new ChatService()
 
 
-const ChatBox = ({ isHistoricalChat, setIsHistoricalChat, customerID, id, pageNumberCurrentChat, messageData, setmessageData, customerName, UserName, CustomerOpenTicketList, setCustomerOpenTicketList, mobileNo, customerEmail, customerTotalTickets, customerOpenTickets, AgentID ,sAgentId,programCode ,sourceType ,setisScrollMessage ,isScrollMessage ,isCallChatMessgaeApi ,setisCallChatMessgaeApi}) => {
+const ChatBox = ({ isHistoricalChat, setIsHistoricalChat, ongoingChatsData, setongoingChatsData,customerID, id, pageNumberCurrentChat, messageData, setmessageData, customerName, UserName, CustomerOpenTicketList, setCustomerOpenTicketList, mobileNo, customerEmail, customerTotalTickets, customerOpenTickets, AgentID ,sAgentId,programCode ,sourceType ,setisScrollMessage ,isScrollMessage ,isCallChatMessgaeApi ,setisCallChatMessgaeApi ,setcustomerName,setmobileNo ,setchatId ,handleHistoricalChat,handelNewChat}) => {
     //debugger
     const [activeTab, setActiveTab] = useState('current')
     const [agentRecentChatData, setagentRecentChatData] = useState([])
@@ -39,6 +41,7 @@ const ChatBox = ({ isHistoricalChat, setIsHistoricalChat, customerID, id, pageNu
     const [currentPage, setCurrentPage] = useState(0);
     const [totalPages, setTotalPages] = useState(0);
     const itemsPerPage = 3;
+    const [currentChatState,setCurrentChatState]=useState(false)
 
   
     useEffect(()=>{
@@ -54,14 +57,19 @@ const ChatBox = ({ isHistoricalChat, setIsHistoricalChat, customerID, id, pageNu
     const handlePageChange = (selectedPage) => {
         setCurrentPage(selectedPage.selected);
     };
+   
+
+
 
 
     const handleTabClick = (tab) => {
         setActiveTab(tab);
+        console.log(tab,"tab");
         if (tab === "recent") {
             handleGetAgentRecentChat(customerID, setagentRecentChatData, setrecentChatLoader);
         }
         else {
+          
             handleGetChatMessagesList(id, 0, false, pageNumberCurrentChat, setmessageData ,setisScrollMessage)
         }
     };
@@ -75,6 +83,16 @@ const ChatBox = ({ isHistoricalChat, setIsHistoricalChat, customerID, id, pageNu
     // useEffect(() => {
 
     // }, [activeTab])
+
+
+    useEffect(() => {
+        if (activeTab === 'current') {
+            handleGetChatMessagesList(id, 0, false, pageNumberCurrentChat, setmessageData, setisScrollMessage);
+        } else {
+            handleGetAgentRecentChat(customerID, setagentRecentChatData, setrecentChatLoader);
+        }
+    }, [activeTab, id, pageNumberCurrentChat, customerID,currentChatState]);
+
 
     console.log(agentRecentChatData, "agentRecentChatData");
     console.log("messageData", messageData)
@@ -212,11 +230,65 @@ const ChatBox = ({ isHistoricalChat, setIsHistoricalChat, customerID, id, pageNu
 
      const handleCreateEndChat =  () => {
         setCreateAndEndChat(true)
+       // handleEndChat()
      } 
 
-     const handleEndChat = () =>{
-        setIsHistoricalChat(null)
-     }
+    const handleEndChat = () => {
+    //debugger
+    let inputParams = { ChatID: id };
+
+    console.log("Calling PostWithParams with:", inputParams);
+   
+    chatService.PostWithParams(
+        "/CustomerChat/UpdateStoreManagerChatStatus",
+        inputParams
+    )
+    .then((response) => {
+        debugger
+        console.log("Response received:", response);
+        var message = response.message;
+        var responseData = response.responseData;
+        if (message === "Success" && responseData) {
+            // Retrieve and update the existing ongoing chats
+            let ongoingChatData = JSON.parse(localStorage.getItem('ongoingChatsData') || '[]');
+            ongoingChatData = ongoingChatData.filter(chat => chat.chatID !== id);
+      console.log("ongoingChatData",ongoingChatData)
+            // Save the updated ongoing chats back to local storage
+            localStorage.setItem('ongoingChatsData', JSON.stringify(ongoingChatData));
+
+            setongoingChatsData(ongoingChatData);
+
+            // Reset state and emit new chat event
+            setmessageData([]);
+            setcustomerName("");
+            setmobileNo("");
+            setchatId(0);
+            setIsHistoricalChat(null);
+            
+
+            socket.emit("CallSetCurrentChatSP", {
+                userMaster_ID: AgentID,
+                ProgramCode: programCode,
+                ChatId: 0,
+            });
+            //handleHistoricalChat();
+           //handelNewChat();
+        }
+    })
+    .catch((error) => {
+        console.log('Error updating chat status:', error);
+    });
+} 
+
+useEffect(() => {
+    setCurrentChatState(!currentChatState)
+   
+    console.log("Ongoing chats data updated:", ongoingChatsData);
+}, [ongoingChatsData]);
+
+
+    
+    console.log(messageData,"Inside Chatbox");
     return (
         <>
             {isHistoricalChat === 'chat' ?
@@ -300,7 +372,7 @@ const ChatBox = ({ isHistoricalChat, setIsHistoricalChat, customerID, id, pageNu
                                             {isAgentFilterApplied === true?(
                                             <tbody className="tbl_data">
                                              {agent_data_Subset.length>0 && agent_data_Subset.map((item,index)=>(
-                                                <tr>
+                                                <tr key={index}>
                                                 <td>
                                                     <img
                                                     src={headphoneIcon}
@@ -314,7 +386,7 @@ const ChatBox = ({ isHistoricalChat, setIsHistoricalChat, customerID, id, pageNu
                                               </tbody>
                                            ):(<tbody className="tbl_data">
                                            {agent_data_Subset.length>0 && agent_data_Subset.map((item,index)=>(
-                                              <tr>
+                                              <tr key={index}>
                                               <td>
                                                   <img
                                                   src={headphoneIcon}
@@ -410,7 +482,7 @@ const ChatBox = ({ isHistoricalChat, setIsHistoricalChat, customerID, id, pageNu
 
 
 
-                    {activeTab === 'current' ? <CurrentChat messageData={messageData} customerName={customerName} UserName={UserName} customerID={customerID} CustomerOpenTicketList={CustomerOpenTicketList} setCustomerOpenTicketList={setCustomerOpenTicketList} mobileNo={mobileNo} customerEmail={customerEmail}
+                    {activeTab === 'current' ? <CurrentChat currentChatState={currentChatState} messageData={messageData} customerName={customerName} UserName={UserName} customerID={customerID} CustomerOpenTicketList={CustomerOpenTicketList} setCustomerOpenTicketList={setCustomerOpenTicketList} mobileNo={mobileNo} customerEmail={customerEmail}
                         customerTotalTickets={customerTotalTickets}
                         customerOpenTickets={customerOpenTickets} id={id}
                         AgentID={AgentID} 
@@ -423,7 +495,8 @@ const ChatBox = ({ isHistoricalChat, setIsHistoricalChat, customerID, id, pageNu
                         setisCallChatMessgaeApi = {setisCallChatMessgaeApi} 
                         pageNumberCurrentChat = {pageNumberCurrentChat} 
                         CreateAndEndChat = {CreateAndEndChat} 
-                        setCreateAndEndChat ={setCreateAndEndChat}/>
+                        setCreateAndEndChat ={setCreateAndEndChat}
+                        handleEndChat = {handleEndChat}/>
                         : <RecentChat agentRecentChatData={agentRecentChatData} recentChatLoader={recentChatLoader} />}
 
 

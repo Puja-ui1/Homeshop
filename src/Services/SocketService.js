@@ -9,7 +9,7 @@ let ongochatcount = JSON.parse(localStorage.getItem("ongoingUnreadCount")) !== n
 let newchatcount = JSON.parse(localStorage.getItem("newUnreadCount")) !== null ? JSON.parse(localStorage.getItem("newUnreadCount")) : 0
 
 export const handleSocket = (setongoingChatsData,setnewChatsData=()=>{}) => {
-
+console.log("Inside HandleSocket");
     //console.log("colorstate",state)
 
     let agentId = 0;
@@ -58,16 +58,9 @@ export const handleSocket = (setongoingChatsData,setnewChatsData=()=>{}) => {
         localStorage.setItem("ongoingUnreadCount", 0)
         ongochatcount = 0
     }
-    //  if (programCode !== "") {
+    
 
-    //     console.log("inside if", programCode.toLowerCase() + agentId,)
-    // 		socket.on(programCode.toLowerCase() + agentId, 
-    //          function (data) {
-    // 			console.log("data",data)
-    // 			}
-    //           )}
-
-     
+     console.log("Line 63 HandeScoket");
 
     socket.on(
         "CallOngoingSP" +
@@ -137,12 +130,6 @@ export const handleSocket = (setongoingChatsData,setnewChatsData=()=>{}) => {
     );
 
 }
-
-
-
-
-
-
 const handleNewChat = (Value,setnewChatsData) => {
 
     //socket.send("hi");
@@ -156,6 +143,7 @@ const handleNewChat = (Value,setnewChatsData) => {
             // console.log("resultnewchat",result)
             var newChatsIncomingData = [];
             let newUnreadCount = 0
+            console.log(result.length,"Inside CallNewChatSP");
             if (result.length > 0) {
                 for (let i = 0; i < result.length; i++) {
                     var objData = {};

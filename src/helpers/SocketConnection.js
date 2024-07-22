@@ -16,6 +16,6 @@ socket.on('connect', () => {
   console.log("Socket is connected");
 });
 
-socket.on('disconnect', () => {
-  console.log("Socket is disconnected");
-});
+// socket.on('disconnect', () => {
+//   console.log("Socket is disconnected");
+// });

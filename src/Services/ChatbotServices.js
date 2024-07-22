@@ -54,7 +54,7 @@ export const handleGetChatMessagesList = (
   objParam.ForRecentChat = forRecentChat;
   objParam.PageNo = isScrollTop ? pageNumberCurrentChat : 1;
   urlType = "/CustomerChat/getChatMessagesListNew";
-
+console.log("Inisde handleGetChatMessagesList ");
   chatService.PostWithParams(urlType, objParam)
     .then((response) => {
       console.log(response, "response");
@@ -73,6 +73,7 @@ export const handleGetChatMessagesList = (
         console.log("messageData", messageData);
 
         setisScrollMessage(true);
+        console.log(messageData,"Inside HandeGetMessageList");
         setmessageData(messageData);
       } else {
         setmessageData(messageData.length > 0 ? messageData : []);

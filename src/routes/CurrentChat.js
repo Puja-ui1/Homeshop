@@ -1,5 +1,5 @@
 import CKEditor from "ckeditor4-react";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState ,useRef} from "react";
 import io from 'socket.io-client';
 import { socket } from '../helpers/SocketConnection';
 import AttachmentIcon from "../assets/Images/attachmentIcon.png";
@@ -21,15 +21,12 @@ import { NotificationManager } from "react-notifications";
 const chatService = new ChatService()
 
 
-const CurrentChat = ({ messageData, customerName, UserName, customerID, setCustomerOpenTicketList, CustomerOpenTicketList, mobileNo, customerEmail, customerTotalTickets, customerOpenTickets, isScrollMessage, id, AgentID, sAgentId, programCode, sourceType, setmessageData, isCallChatMessgaeApi, setisCallChatMessgaeApi, pageNumberCurrentChat, CreateAndEndChat,setCreateAndEndChat }) => {
+const CurrentChat = ({ messageData, customerName, UserName, customerID, setCustomerOpenTicketList, CustomerOpenTicketList, mobileNo, customerEmail, customerTotalTickets, customerOpenTickets, isScrollMessage, id, AgentID, sAgentId, programCode, sourceType, setmessageData, isCallChatMessgaeApi, setisCallChatMessgaeApi, pageNumberCurrentChat, CreateAndEndChat,setCreateAndEndChat ,handleEndChat}) => {
 
     console.log("messageDataaaaaaaaaaaaaaaaaaaaaaaaaa", messageData)
-
-
     const [open, setOpen] = useState(false)
     const [openTicket, setOpenTickets] = useState(false)
     const [brandData, setbrandData] = useState([])
-
     const [selectedCategory, setselectedCategory] = useState("")
     const [selectedCategoryName, setselectedCategoryName] = useState("")
     const [selectedSubCategory, setselectedSubCategory] = useState("")
@@ -47,11 +44,43 @@ const CurrentChat = ({ messageData, customerName, UserName, customerID, setCusto
     const [openAttachmentPopUp, setopenAttachmentPopUp] = useState(false)
     const [message, setmessage] = useState("")
     const [ckeditorAdd, setckeditorAdd] = useState("")
+    const [TicketCreated , setTicketCreated] = useState(false)
+    const[categoryCompulsion , setcategoryCompulsion] = useState("")
+    const[subCategoryCompulsion , setsubCategoryCompulsion] =useState("")
+    const[issueTypeCompulsion ,setissueTypeCompulsion] = useState("")
+    const[brandCompulsion , setbrandCompulsion] = useState("")
+    // const newMessage = socket.on('SendToWebbotReplyV2'){
 
+    // }
     useEffect(() => {
         handleGetBrandList()
 
     }, [])
+
+    // useEffect(() => {
+    //     // Mock function to simulate receiving new messages
+    //     const receiveNewMessage = (newMessage) => {
+    //       setMessageData((prevMessages) => [...prevMessages, newMessage]);
+    //     },[messageData]);
+
+    //  useEffect(() => {
+    //     //debugger
+    //     if (messageData && messageData.length > 0 ) {
+    //         const chatContainer = document.getElementsByClassName('chat_content_box');
+    //         chatContainer.scrollTop = chatContainer.scrollHeight+30;
+    //     }
+    // }, [messageData]);
+
+    //const chatContainerRef = useRef(null);
+
+    // useEffect(() => {
+    //     debugger
+    //     // Scroll to the bottom of the chat when new messages are added
+      
+    //     if (chatContainerRef.current) {
+    //         chatContainerRef.current.scrollTop = chatContainerRef.current.scrollHeight;
+    //     }
+    // }, [messageData]);
 
     const handelCreateTicket = () => {
         // debugger
@@ -71,10 +100,6 @@ const CurrentChat = ({ messageData, customerName, UserName, customerID, setCusto
     const handleCloseAttachment = () => {
         setopenAttachmentPopUp(false)
     }
-
-
-
-
     const handleOpenTicketOpn = (customerId, setCustomerOpenTicketList) => {
         let param = {
             customerId: customerId,
@@ -136,10 +161,8 @@ const CurrentChat = ({ messageData, customerName, UserName, customerID, setCusto
             setisValidEmail(false)
         }
     };
-
-    //create ticket api call and function handler 
-
-    const handleGetBrandList = () => {
+//create ticket api call and function handler 
+ const handleGetBrandList = () => {
         axios({
             method: "post",
             url: config.apiUrl + "/Brand/GetBrandList",
@@ -278,8 +301,10 @@ const CurrentChat = ({ messageData, customerName, UserName, customerID, setCusto
 
 
     const handleCreateTicketButton = () => {
+        console.log("Inside handleCreateTicketButton");
+        setTicketCreated(true)
         if (mobileNo.length > 0 && selectedCategory > 0 && selectedSubCategory > 0 && selectedIssueType > 0 && selectedBrand > 0) {
-
+                
             let inputParams = {
                 ChatID: id,
                 UserID: AgentID,
@@ -302,21 +327,33 @@ const CurrentChat = ({ messageData, customerName, UserName, customerID, setCusto
                 data: inputParams,
             })
                 .then(function (res) {
+
+                    console.log("handleCreateTicketButton response");
                     let Msg = res.data.message;
                     if (Msg === "Success") {
                         NotificationManager.success("Ticket Create successfully.");
 
                         setOpen(false)
+                       
 
                         // if (self.state.closeChatWithticketCreation) {
                         //   self.handleUpdateStoreManagerChatStatus(3);
                         // }
+
+
                     }
 
                     setselectedBrand("")
                     setselectedCategory("")
                     setselectedIssueType("")
                     setselectedSubCategory("")
+                    if(TicketCreated){
+                        console.log("inside create end chat")
+                        handleEndChat()
+                        setTicketCreated(false)
+                    }
+
+                    
                 })
                 .catch((error) => {
                     console.log(error);
@@ -324,14 +361,14 @@ const CurrentChat = ({ messageData, customerName, UserName, customerID, setCusto
         }
 
         else {
-            //   this.setState({
-            //     categoryCompulsion: "Category field is compulsory.",
-            //     subCategoryCompulsion: "Sub Category field is compulsory.",
-            //     issueTypeCompulsion: "Issue Type field is compulsory.",
-            //     brandCompulsion: "Brand field is compulsary",
-            //   });
+            
+            setcategoryCompulsion("Category field is compulsory.")
+            setsubCategoryCompulsion("Sub Category field is compulsory.")
+            setissueTypeCompulsion("Issue Type field is compulsory.")
+            setbrandCompulsion("Brand field is compulsary")
 
             console.log("else case ")
+            
         }
 
 
@@ -378,14 +415,18 @@ const CurrentChat = ({ messageData, customerName, UserName, customerID, setCusto
 
     };
     console.log("AttachementFiles", AttachementFiles[0]?.name);
+    
     const handleAutoCorrection = () => {
         handlesendmsg(message)
 
     }
 
     const handlesendmsg = (Message) => {
+        console.log("12345")
         var dataObj = {};
         if (AttachementFiles.length === 0) {
+            console.log("12345555")
+
             dataObj = {
                 HeaderToken: authHeader()["X-Authorized-Token"],
                 ImageURL: "",
@@ -420,7 +461,11 @@ const CurrentChat = ({ messageData, customerName, UserName, customerID, setCusto
                     new Date().getSeconds(),
                 userMaster_ID: AgentID,
             };
+            
             socket.emit("SendBellReplyV2", dataObj);
+            
+            console.log("123222245")
+
             var messagedata = messageData;
             var objMessgage = {};
             objMessgage.isBotReply = false;
@@ -433,10 +478,29 @@ const CurrentChat = ({ messageData, customerName, UserName, customerID, setCusto
             setckeditorAdd("")
             setmessageData(messagedata)
             setmessage("")
+            debugger
+            if (messagedata && messagedata.length > 0 ) {
+                const chatContainer = document.getElementsByClassName('chat_content_box');
+                chatContainer.scrollTop = chatContainer.scrollHeight+30;
+            }
+           // scrollToBottom()
+
         }
 
     }
-
+    
+    // const scrollToBottom = () => {
+    //     const chatContainer = document.querySelector('.chat_content_box');
+    //     if (chatContainer) {
+    //         const lastChild = chatContainer.lastElementChild;
+    //         if (lastChild) {
+    //             lastChild.scrollIntoView({ behavior: 'smooth', block: 'end' });
+    //         }
+    //     }
+    // };
+    
+    
+     
 
     const handelCKEditorChange = (evt) => {
         var newContent = evt.editor.getData();
@@ -466,19 +530,34 @@ const CurrentChat = ({ messageData, customerName, UserName, customerID, setCusto
         setCreateAndEndChat(false)
 
     } 
-    const handelCreateTicketAndEndChat = () =>{ 
-        handelCreateTicket()
+    const handelCreateTicketAndEndChat = () =>{
+        
+        console.log("inside handelCreateTicketAndEndChat") 
+        handelCreateTicket() 
+        handleCreateTicketButton()
+        console.log("TicketCreated" ,TicketCreated)
 
+       
+        
+
+    } 
+    const handleEndChatAfterTicket = () =>{
+        handleEndChat()
+        
     }
+    console.log(TicketCreated,"***************");
+
+
+    console.log(messageData,messageData && messageData.length ,"Inisde CurrentChat");
 
     return (
         <div className="currentChat_wrapper">
             <div className="row m-0">
-                <div className="col-md-8">
-                    <div className="chat_content_box" onScroll={handelmessageScrollDiv}>
+                <div className="col-md-8"  id="chat-container">
+                    <div  className="chat_content_box" >
                         {messageData && messageData.length > 0 ? (
                             messageData.map((chat, index) => (chat?.byCustomer ? (
-                                <div className="chat_msg_content d-flex p-3">
+                                <div className="chat_msg_content d-flex p-3" key={index}>
                                     <label className="icon">{extractShortName(customerName)}</label>
                                     <div className="chat_trail_content">
                                         <div className="chat_trail_chat">
@@ -487,7 +566,7 @@ const CurrentChat = ({ messageData, customerName, UserName, customerID, setCusto
                                         <span className="chat_trail_time">{chat.chatDate + ""} {chat.chatTime}</span>
                                     </div>
                                 </div>) : (
-                                <div className="chat_msg_content_bot d-flex p-3 justify-content-end">
+                                <div className="chat_msg_content_bot d-flex p-3 justify-content-end" key={index}>
 
                                     <div className="chat_trail_content_bot">
                                         <div className="chat_trail_chat">
@@ -514,7 +593,7 @@ const CurrentChat = ({ messageData, customerName, UserName, customerID, setCusto
 
                     {CreateAndEndChat === true ? (
                         <div className="create_end_chat">
-                            <button className="btn_create_end_chat mr-3"> END CHAT </button>
+                            <button className="btn_create_end_chat mr-3" onClick={handleEndChatAfterTicket}> END CHAT </button>
                             <button className="btn_create_end_chat mr-3" onClick={handelCreateTicketAndEndChat}> CREATE TICKET AND END CHAT </button>
                             <button className="btn_create_end_chat mr-3" onClick={handleEndCreateCancel}> CANCEL </button>
                         </div>
@@ -600,7 +679,7 @@ const CurrentChat = ({ messageData, customerName, UserName, customerID, setCusto
                                         {CustomerOpenTicketList && CustomerOpenTicketList.length > 0 ? CustomerOpenTicketList.map((item, index) => {
 
                                             return (
-                                                <div>
+                                                <div key={index}>
                                                     <div className="row">
                                                         <div className="col-md-3 ticketid"> {item.ticketID}
                                                         </div>
@@ -786,7 +865,7 @@ const CurrentChat = ({ messageData, customerName, UserName, customerID, setCusto
                                     <div className="file_attached">
                                         {AttachementFiles && AttachementFiles.length > 0 ? (
                                             Object.values(AttachementFiles).map((item, i) => (
-                                                <div className="attached_file_details" >
+                                                <div className="attached_file_details" key={i} >
                                                     <label className="img_attachedfile_title">{item.name}</label>
                                                     <div>
                                                         <img src={CancelImg} alt="cancel_img" className="Attachment_cancel" onClick={() => handleCloseAttachment(item)} />
